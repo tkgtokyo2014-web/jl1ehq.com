@@ -111,6 +111,11 @@ html.lang-ja .en { display: none !important; }
   box-shadow: 0 0 26px rgba(77,195,255,.45); font-weight: 700;
 }
 .btn-primary:hover { box-shadow: 0 0 46px rgba(77,195,255,.8); transform: translateY(-2px); }
+.btn-plain {
+  background: #fff; color: #0a1220; font-weight: 700; border-radius: 8px;
+  font-family: "Noto Sans JP", sans-serif; letter-spacing: .04em;
+}
+.btn-plain:hover { background: #e8eef7; transform: translateY(-2px); }
 .btn-ghost { color: var(--cyan); border: 1px solid var(--glass-border); background: var(--glass); backdrop-filter: blur(8px); }
 .btn-ghost:hover { border-color: var(--glow); box-shadow: 0 0 22px rgba(77,195,255,.35); transform: translateY(-2px); }
 .scroll-hint {
