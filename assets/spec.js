@@ -15,6 +15,15 @@
   langBtn.addEventListener("click", () =>
     applyLang(html.classList.contains("lang-ja") ? "en" : "ja"));
 
+  /* robust anchor jump (layout shifts from images can defeat the native jump) */
+  const jumpToHash = () => {
+    if (!location.hash) return;
+    const el = document.getElementById(location.hash.slice(1));
+    if (el) el.scrollIntoView({ behavior: "auto", block: "start" });
+  };
+  window.addEventListener("load", () => { jumpToHash(); setTimeout(jumpToHash, 400); });
+  window.addEventListener("hashchange", jumpToHash);
+
   const io = new IntersectionObserver((es) => {
     es.forEach((e) => { if (e.isIntersecting) { e.target.classList.add("on"); io.unobserve(e.target); } });
   }, { threshold: 0.06 });
