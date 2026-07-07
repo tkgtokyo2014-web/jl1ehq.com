@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="ja" class="lang-ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>System Specification | JL1EHQ — クラウド・遠隔操作・AI 総合無線局システム仕様書</title>
+<meta name="description" content="JL1EHQ 遠隔操作無線システム Version 1.0 Final の完全仕様書（日英対応）。大磯200W固定局・東京リモート局・クラウドログ・AIエージェント構想の全貌。">
+<link rel="canonical" href="https://jl1ehq.com/spec.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JL1EHQ System Specification — Cloud / Remote / AI Integrated Radio Station">
+<meta property="og:url" content="https://jl1ehq.com/spec.html">
+<meta property="og:image" content="https://jl1ehq.com/images/antenna_mast.jpg">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;800&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/v2.css">
+<style>
+/* ---- spec page extensions (dark glass document) ---- */
+.spec2-hero { background: radial-gradient(ellipse at 50% -20%, rgba(47,124,255,.22), transparent 60%), var(--bg); text-align:center; padding: 130px 22px 60px; border-bottom: 1px solid rgba(120,190,255,.12); }
+.spec2-hero h1 { color:#fff; font-size: clamp(21px, 3.6vw, 34px); letter-spacing:.06em; margin-bottom:12px; }
+.spec2-hero .docno { color: var(--glow); font-family:"Orbitron",sans-serif; font-size:11px; letter-spacing:.3em; margin-bottom:16px; }
+.spec2-hero .note { color: var(--text-dim); font-size:12.5px; max-width:760px; margin:0 auto; }
+.spec2-layout { display:grid; grid-template-columns: 250px 1fr; gap:44px; max-width:1220px; margin:0 auto; padding:46px 24px 80px; }
+.toc2 { position:sticky; top:86px; align-self:start; font-size:12.5px; max-height: calc(100vh - 110px); overflow-y:auto; padding-right: 6px; }
+.toc2 h4 { color:var(--gold); font-family:"Orbitron",sans-serif; font-size:11px; letter-spacing:.3em; margin-bottom:12px; }
+.toc2 a { display:block; color:var(--text-dim); padding:5px 0 5px 12px; border-left:1px solid rgba(120,190,255,.18); transition:.2s; }
+.toc2 a:hover { color:var(--cyan); border-left-color:var(--glow); }
+.doc { min-width:0; }
+.doc h2 { color:#fff; font-size:23px; letter-spacing:.04em; margin:64px 0 6px; padding-bottom:10px; border-bottom:1px solid rgba(120,190,255,.25); }
+.doc h2:first-child { margin-top:0; }
+.doc h2 .ch-en { display:block; color:var(--glow); font-family:"Orbitron",sans-serif; font-size:11px; letter-spacing:.28em; margin-top:6px; }
+.doc h3 { color:var(--cyan); font-size:16.5px; margin:34px 0 12px; letter-spacing:.03em; }
+.doc p { color:var(--text-dim); font-size:14.5px; margin-bottom:13px; }
+.doc b { color:var(--text); }
+.doc ul { padding-left:2px; margin:10px 0 16px; }
+.doc li { list-style:none; color:var(--text-dim); font-size:14px; padding-left:20px; position:relative; margin-bottom:7px; }
+.doc li::before { content:""; position:absolute; left:2px; top:9px; width:6px; height:6px; border-radius:50%; background:var(--glow); box-shadow:0 0 8px var(--glow); }
+.doc table { border-collapse:collapse; width:100%; margin:16px 0 22px; font-size:13.5px; }
+.doc th { background:rgba(47,124,255,.16); color:#fff; font-weight:600; letter-spacing:.05em; }
+.doc th, .doc td { border:1px solid rgba(120,190,255,.18); padding:9px 14px; text-align:left; color:var(--text-dim); }
+.doc td:first-child { color:var(--text); }
+.doc figure { margin:24px 0 30px; text-align:center; }
+.doc figure img { display:inline-block; max-width:min(720px,100%); border-radius:12px; border:1px solid rgba(120,190,255,.16); background:#fff; padding:6px; }
+.doc figure.photo img { background:transparent; padding:0; }
+.doc figcaption { color:var(--glow); font-size:12px; margin-top:10px; letter-spacing:.06em; }
+.doc .omitted { background:rgba(212,175,106,.06); border-left:3px solid var(--gold); border-radius:0 10px 10px 0; padding:12px 18px; font-size:12.5px; color:var(--text-dim); margin:20px 0; }
+.doc .quote { border-left:3px solid var(--glow); padding:4px 18px; margin:20px 0; color:var(--text); font-size:15px; }
+.doc-end { text-align:center; margin-top:70px; padding-top:30px; border-top:1px solid rgba(120,190,255,.15); color:var(--text-dim); font-size:12px; letter-spacing:.1em; }
+.doc-end .display { color:var(--glow); letter-spacing:.3em; margin-bottom:8px; }
+@media (max-width:900px){ .spec2-layout{grid-template-columns:1fr;} .toc2{position:static; max-height:none;} }
+</style>
+</head>
+<body>
+<header class="hdr">
+  <a class="logo display" href="index.html">JL1EHQ<small>SYSTEM SPECIFICATION</small></a>
+  <div style="display:flex;align-items:center">
+    <nav class="nav" id="nav" style="position:static;transform:none;flex-direction:row;background:none;border:none;padding:0">
+      <a href="index.html">← HOME</a>
+    </nav>
+    <button class="lang-btn" id="langBtn">🇺🇸 English</button>
+  </div>
+</header>
+
+<div class="spec2-hero">
+  <div class="docno">JL1EHQ-CRA-V1-FMS-001 ／ VERSION 1.0 FINAL — MASTER SPECIFICATION</div>
+  <h1><span class="ja">クラウド・遠隔操作・AI（人工知能）<br>総合無線局システム 仕様書</span><span class="en">Cloud / Remote-Control / AI<br>Integrated Amateur Radio Station — System Specification</span></h1>
+  <p class="note"><span class="ja">著者：髙木俊郎（JL1EHQ）。本ページは原本仕様書の全文を掲載した公開版です。自宅が特定できる写真、およびサーバーの接続情報（アドレス等）のみ、防犯・セキュリティのため伏せています。</span><span class="en">Author: Toshio Takagi (JL1EHQ). This page publishes the complete text of the original specification. Only photos that could identify the author's residence and server connection details are withheld for security.</span></p>
+</div>
+
+<div class="spec2-layout">
+<nav class="toc2">
+  <h4>CONTENTS</h4>
+  <a href="#ch1"><span class="ja">第1章　目的</span><span class="en">1. Purpose</span></a>
+  <a href="#ch2"><span class="ja">第2章　大磯固定基地局（OBS）</span><span class="en">2. Oiso Base Station (OBS)</span></a>
+  <a href="#ch3"><span class="ja">第3章　東京リモート局（TRS）</span><span class="en">3. Tokyo Remote Station (TRS)</span></a>
+  <a href="#ch4"><span class="ja">第4章　ネットワーク構成</span><span class="en">4. Network Architecture</span></a>
+  <a href="#ch5"><span class="ja">第5章　無線機接続構成</span><span class="en">5. Transceiver Connections</span></a>
+  <a href="#ch6"><span class="ja">第6章　ソフト構成</span><span class="en">6. Software</span></a>
+  <a href="#ch7"><span class="ja">第7章　ログ管理</span><span class="en">7. Log Management</span></a>
+  <a href="#ch8"><span class="ja">第8章　LoTW</span><span class="en">8. LoTW</span></a>
+  <a href="#ch9"><span class="ja">第9章　eQSL</span><span class="en">9. eQSL</span></a>
+  <a href="#ch10"><span class="ja">第10章　QRZ.com XML</span><span class="en">10. QRZ.com XML</span></a>
+  <a href="#ch11"><span class="ja">第11章　HAMLOG</span><span class="en">11. HAMLOG</span></a>
+  <a href="#ch12"><span class="ja">第12章　JARL運用</span><span class="en">12. JARL Operations</span></a>
+  <a href="#ch13"><span class="ja">第13章　UPSシステム</span><span class="en">13. UPS System</span></a>
+  <a href="#ch14"><span class="ja">第14章　AIエージェント構想</span><span class="en">14. AI Agent Concept</span></a>
+  <a href="#profile"><span class="ja">著者プロフィール</span><span class="en">About the Author</span></a>
+</nav>
+
+<main class="doc">
+
+<!-- ============ 第1章 ============ -->
+<h2 id="ch1"><span class="ja">第1章　目的</span><span class="en">Chapter 1 — Purpose</span><span class="ch-en">PURPOSE</span></h2>
+
+<h3><span class="ja">1.1　本システムの目的</span><span class="en">1.1 Purpose of the System</span></h3>
+<p><span class="ja">本システムの目的は、最先端の<b>リモート運用による総合無線システム</b>の実証実験である。その概要は、200W HF固定無線局を神奈川県大磯に設置し、東京日本橋のマンション15階より<b>遠隔操作で運用</b>する。その、<b>交信記録（ログ）をクラウド上で一元管理し、必要情報が瞬時に描画される最先端のシステム</b>の実現である。</span>
+<span class="en">The purpose of this system is a proof-of-concept of a <b>state-of-the-art integrated radio station operated entirely by remote control</b>. A 200W HF fixed station is installed in Oiso, Kanagawa, and is <b>operated remotely</b> from the 15th floor of a residence in Nihonbashi, Tokyo. All QSO records (logs) are <b>managed centrally in the cloud, with the information the operator needs rendered instantly</b>.</span></p>
+<p><span class="ja">本システムを、<b>大磯固定基地局（Oiso Base Station：OBS）</b>と<b>東京リモート局（Tokyo Remote Station：TRS）</b>と呼ぶ。</span>
+<span class="en">The two sites are called the <b>Oiso Base Station (OBS)</b> and the <b>Tokyo Remote Station (TRS)</b>.</span></p>
+
+<h3><span class="ja">1.2　システム構築の経緯</span><span class="en">1.2 Background</span></h3>
+<p><span class="ja">ICOM『IC-7760』を新規購入し、神奈川県大磯の自宅に設置した。自宅の敷地は決して広くはないが、HFアンテナの設置が可能であり、3.5MHzフルサイズダイポール、7MHzフルサイズダイポール、14MHz 2エレ八木、そして3.5〜50MHz対応のCPATUの4基のアンテナを設置した。ここまでは従来通りのアマチュア無線局である。</span>
+<span class="en">A new ICOM IC-7760 was purchased and installed at the author's home in Oiso, Kanagawa. The lot is by no means large, but it can accommodate HF antennas: four were erected — a full-size dipole for 3.5 MHz, a full-size dipole for 7 MHz, a 2-element Yagi for 14 MHz, and a CPATU covering 3.5–50 MHz. Up to this point it was a conventional amateur radio station.</span></p>
+<p><span class="ja">ところが、私の生活と仕事の拠点は、東京都日本橋である。都心のマンションから、大型アンテナによる200W運用――この夢が、<b>IC-7760の遠隔操作</b>で実現した。IC-7760の操作部を東京都日本橋に設置し、神奈川県大磯とのVPN接続により、想像を超える快適な遠隔操作環境ができあがった。</span>
+<span class="en">However, the author's life and work are based in Nihonbashi, Tokyo. Operating 200 watts into large antennas from a downtown high-rise — that dream came true through <b>remote control of the IC-7760</b>. With the IC-7760's control head installed in Nihonbashi and a VPN link to Oiso, a remote-operating environment more comfortable than imagined was completed.</span></p>
+<p><span class="ja">何のタイムラグもなく、リモート操作の大成功である。CW、SSB、FT8――すべての運用は何の問題もない。ところが、ログシステムには困った。HAMLOGを持ち歩くのも面倒であり、無線機との接続にも問題がある。クラウド型のログソフトにはサーバー設置の障壁が立ちはだかったが、ChatGPTを相手に構想を練り、さくらVPSを使ってクラウドサーバーを独自構築した。プログラム作成と実装は、Claude Codeが担当した。</span>
+<span class="en">With no perceptible latency, the remote operation was a complete success — CW, SSB and FT8 all work flawlessly. Logging, however, was a headache. Carrying HAMLOG around was cumbersome and connecting it to the rig was problematic. Cloud logging software faced the hurdle of standing up a server, but the author refined the concept in dialogue with ChatGPT and built a private cloud server on Sakura VPS. Programming and implementation were handled by Claude Code.</span></p>
+<p><span class="ja">ログは、クラウド型のWavelogを導入し、LoTW・eQSL・QRZ.comなどを自動連携。HAMLOGも自動連携し、JARL情報にも対応した。</span>
+<span class="en">For logging, cloud-based Wavelog was adopted, with automatic links to LoTW, eQSL and QRZ.com. HAMLOG is synchronized automatically as well, covering JARL-related workflows.</span></p>
+
+<h3><span class="ja">1.3　設計方針</span><span class="en">1.3 Design Principles</span></h3>
+<p><span class="ja">本システムは、RF設備（送受信・アンテナ郡）は大磯固定基地局（OBS）へ集約し、東京リモート局（TRS）は運営・操作のみを担当する。</span>
+<span class="en">All RF equipment (transceiver and antenna farm) is concentrated at the Oiso Base Station (OBS); the Tokyo Remote Station (TRS) is responsible solely for operation and control.</span></p>
+<ul>
+<li><span class="ja">大磯固定基地局を本システムの常設基地局（固定局200W）とし、無人運転可能な自動復帰システムを持つ</span><span class="en">The Oiso Base Station is the permanent base (200W fixed station), equipped with an auto-recovery system for unattended operation</span></li>
+<li><span class="ja"><b>Wavelogを正本（唯一のマスターログ／Single Source of Truth）とする</b></span><span class="en"><b>Wavelog is the master log — the Single Source of Truth</b></span></li>
+<li><span class="ja">HAMLOGはWavelogの副本とし、Wavelogから自動同期し、JARL情報・紙QSL等の国内運用を担う</span><span class="en">HAMLOG is a replica of Wavelog, synced automatically, handling domestic work such as JARL data and paper QSLs</span></li>
+<li><span class="ja">LoTW・eQSL・QRZ.comはWavelogから直接連携する（HAMLOGを経由しない）</span><span class="en">LoTW, eQSL and QRZ.com are fed directly from Wavelog (never via HAMLOG)</span></li>
+<li><span class="ja"><b>FT8は自動ログ登録、CW・SSBはログ手入力</b></span><span class="en"><b>FT8 QSOs are logged automatically; CW and SSB are entered manually</b></span></li>
+</ul>
+
+<h3><span class="ja">1.4　システム全体像</span><span class="en">1.4 System Overview</span></h3>
+<p><span class="ja">遠隔操作無線システムは、以下の4システムで構成する。</span><span class="en">The remote-controlled radio system consists of the following four subsystems.</span></p>
+<table>
+<tr><th><span class="ja">システム</span><span class="en">Subsystem</span></th><th><span class="ja">役割</span><span class="en">Role</span></th></tr>
+<tr><td><span class="ja">大磯固定基地局（OBS）</span><span class="en">Oiso Base Station (OBS)</span></td><td><span class="ja">RF送信基地・バックアップ基地</span><span class="en">RF transmission base / backup base</span></td></tr>
+<tr><td><span class="ja">東京リモート局（TRS）</span><span class="en">Tokyo Remote Station (TRS)</span></td><td><span class="ja">メインリモート運営基地</span><span class="en">Main remote operating base</span></td></tr>
+<tr><td><span class="ja">さくらVPS</span><span class="en">Sakura VPS (cloud)</span></td><td><span class="ja">Wavelogマスターサーバー</span><span class="en">Wavelog master server</span></td></tr>
+<tr><td>ThinkPad X13</td><td><span class="ja">HAMLOG・JARL専用端末</span><span class="en">Dedicated HAMLOG / JARL terminal</span></td></tr>
+</table>
+<figure><img src="images/image_003.png" alt="System overview" loading="lazy"><figcaption><span class="ja">図1-1　システム全体構成図</span><span class="en">Fig. 1-1 — Overall system architecture</span></figcaption></figure>
+
+<!-- ============ 第2章 ============ -->
+<h2 id="ch2"><span class="ja">第2章　大磯固定基地局（Oiso Base Station : OBS）</span><span class="en">Chapter 2 — Oiso Base Station (OBS)</span><span class="ch-en">OISO BASE STATION</span></h2>
+
+<h3><span class="ja">2.1　役割</span><span class="en">2.1 Role</span></h3>
+<p><span class="ja">大磯固定基地局（OBS）は本システム唯一のRF送信基地であり、神奈川県大磯に設置した200W常設無線局である。実際の電波送信はすべて大磯固定基地局から行われる。</span>
+<span class="en">The Oiso Base Station (OBS) is the system's only RF transmission base — a permanent 200W station in Oiso, Kanagawa. Every actual transmission originates here.</span></p>
+<ul>
+<li><span class="ja">RF送信基地（200W）</span><span class="en">RF transmission base (200W)</span></li>
+<li><span class="ja">IC-7760本体設置</span><span class="en">Hosts the IC-7760 RF deck</span></li>
+<li><span class="ja">アンテナ設備</span><span class="en">Antenna facilities</span></li>
+<li><span class="ja">バックアップ運用基地</span><span class="en">Backup operating base</span></li>
+<li><span class="ja">自動復帰システムによる無人運転</span><span class="en">Unattended operation via auto-recovery system</span></li>
+<li><span class="ja">UPS電源保護</span><span class="en">UPS power protection</span></li>
+</ul>
+<div class="omitted"><span class="ja">※ 図2-1「大磯固定基地局 全景（神奈川県中郡大磯町）」（住宅街の一角に3.5MHz・7MHzフルサイズダイポール、14MHz 2エレ八木、CPATUの4基のアンテナを設置）は、自宅が特定できる写真のため公開版では割愛しています。</span><span class="en">* Fig. 2-1 "Full view of the Oiso Base Station" (four antennas — 3.5/7 MHz full-size dipoles, a 14 MHz 2-element Yagi and a CPATU — in a residential neighborhood) is withheld in this public edition because it could identify the author's residence.</span></div>
+
+<h3><span class="ja">2.2　設置場所</span><span class="en">2.2 Location</span></h3>
+<p><span class="ja">神奈川県中郡大磯町（Grid Locator：PM95RM ／ JCG：11006B）。200W固定局（移動しない）として神奈川県中郡大磯町に免許された常設無線局である。</span>
+<span class="en">Oiso-machi, Naka-gun, Kanagawa (Grid Locator PM95RM / JCG 11006B). Licensed as a 200W fixed (non-mobile) station in Oiso, Kanagawa.</span></p>
+<figure><img src="images/image_035.png" alt="License information" loading="lazy"><figcaption><span class="ja">図2-2　無線局免許状等情報（総務省・JL1EHQ）</span><span class="en">Fig. 2-2 — Station license record (Ministry of Internal Affairs and Communications, JL1EHQ)</span></figcaption></figure>
+
+<h3><span class="ja">2.3　無線機</span><span class="en">2.3 Transceiver</span></h3>
+<table>
+<tr><th><span class="ja">項目</span><span class="en">Item</span></th><th><span class="ja">内容</span><span class="en">Details</span></th></tr>
+<tr><td><span class="ja">無線機</span><span class="en">Transceiver</span></td><td>ICOM IC-7760</td></tr>
+<tr><td><span class="ja">最大送信出力</span><span class="en">Max output</span></td><td>200W</td></tr>
+<tr><td><span class="ja">運用周波数</span><span class="en">Frequency range</span></td><td>3.5MHz〜50MHz</td></tr>
+<tr><td><span class="ja">運用モード</span><span class="en">Modes</span></td><td>FT8 ／ CW ／ SSB</td></tr>
+</table>
+<p><span class="ja">運用バンド：3.5／7／10／14／18／21／24／28／50MHz</span><span class="en">Operating bands: 3.5 / 7 / 10 / 14 / 18 / 21 / 24 / 28 / 50 MHz</span></p>
+<figure class="photo"><img src="images/image_004.jpg" alt="Operating desk at OBS" loading="lazy"><figcaption><span class="ja">図2-3　大磯固定基地局 運用卓全景 — IC-7760を中心とした200W常設RF送信基地の標準運用環境</span><span class="en">Fig. 2-3 — Operating desk at the Oiso Base Station: the standard environment of the 200W permanent RF base, centered on the IC-7760</span></figcaption></figure>
+
+<h3><span class="ja">2.4　アンテナ設備</span><span class="en">2.4 Antenna Facilities</span></h3>
+<div class="omitted"><span class="ja">※ 図2-4「大磯固定基地局 アンテナ全景」は自宅が写り込むため公開版では割愛しています。</span><span class="en">* Fig. 2-4 "Antenna farm overview" is withheld in this public edition as it shows the residence.</span></div>
+<figure class="photo"><img src="images/image_007.jpg" alt="Antenna mast" loading="lazy"><figcaption><span class="ja">図2-5　アンテナマスト</span><span class="en">Fig. 2-5 — Antenna mast</span></figcaption></figure>
+<p><span class="ja"><b>専用アンテナ</b></span><span class="en"><b>Dedicated antennas</b></span></p>
+<table>
+<tr><th><span class="ja">バンド</span><span class="en">Band</span></th><th><span class="ja">アンテナ</span><span class="en">Antenna</span></th><th><span class="ja">最大送信出力</span><span class="en">Max power</span></th></tr>
+<tr><td>3.5MHz</td><td><span class="ja">フルサイズダイポール</span><span class="en">Full-size dipole</span></td><td>200W</td></tr>
+<tr><td>7MHz</td><td><span class="ja">フルサイズダイポール</span><span class="en">Full-size dipole</span></td><td>200W</td></tr>
+<tr><td>14MHz</td><td><span class="ja">2エレメント八木</span><span class="en">2-element Yagi</span></td><td>200W</td></tr>
+</table>
+<figure class="photo"><img src="images/image_008.jpg" alt="Dipole feed point" loading="lazy"><figcaption><span class="ja">図2-6　フルサイズダイポール給電部</span><span class="en">Fig. 2-6 — Feed point of the full-size dipole</span></figcaption></figure>
+<p><span class="ja"><b>CPATU（全バンド対応補助アンテナ）</b> — 本システムの全バンド対応補助アンテナシステムとする。対応バンドは3.5／7／10／14／18／21／24／28／50MHz、最大送信出力は100W。</span>
+<span class="en"><b>CPATU (all-band auxiliary antenna)</b> — the system's all-band auxiliary antenna, covering 3.5 / 7 / 10 / 14 / 18 / 21 / 24 / 28 / 50 MHz with a maximum power of 100W.</span></p>
+<figure class="photo"><img src="images/image_009.jpg" alt="Vertical antenna" loading="lazy"><figcaption><span class="ja">図2-7　バーチカルアンテナ</span><span class="en">Fig. 2-7 — Vertical antenna</span></figcaption></figure>
+<figure class="photo"><img src="images/image_010.jpg" alt="ICOM AH-730" loading="lazy"><figcaption><span class="ja">図2-8　ICOM AH-730 オートアンテナチューナー — CPATUに整合し、広い周波数範囲で自動的にSWRを追い込む</span><span class="en">Fig. 2-8 — ICOM AH-730 automatic antenna tuner: matches the CPATU, automatically minimizing SWR over a wide frequency range</span></figcaption></figure>
+<p><span class="ja"><b>アンテナ運用方針</b> — 通常は専用アンテナを優先使用する。専用アンテナが存在しないバンド、または補助運用時はCPATUを使用する。</span>
+<span class="en"><b>Antenna policy</b> — dedicated antennas take priority. The CPATU is used on bands without a dedicated antenna, or for auxiliary operation.</span></p>
+
+<h3><span class="ja">2.5　RFノイズ・TVI対策</span><span class="en">2.5 RF Noise / TVI Countermeasures</span></h3>
+<p><span class="ja">大磯固定基地局は200W送信設備として、高いEMC性能を確保する。コモンモードフィルターを以下の2か所へ設置する。</span>
+<span class="en">As a 200W transmitting facility, the Oiso Base Station maintains high EMC performance. Common-mode filters are installed at two points:</span></p>
+<ul>
+<li><span class="ja">アンテナ給電点直下：コモンモード電流低減、アンテナ性能安定化</span><span class="en">Directly below the antenna feed point — reduces common-mode current and stabilizes antenna performance</span></li>
+<li><span class="ja">IC-7760アンテナ入力直前：RF回り込み防止、TVI対策、BCI対策、同軸外皮電流低減</span><span class="en">Just before the IC-7760 antenna input — prevents RF ingress, TVI and BCI, and reduces coax shield current</span></li>
+</ul>
+<figure class="photo"><img src="images/image_011.jpg" alt="Common-mode filter at feed point" loading="lazy"><figcaption><span class="ja">図2-9　アンテナ給電点直下のコモンモードフィルター</span><span class="en">Fig. 2-9 — Common-mode filter directly below the antenna feed point</span></figcaption></figure>
+<figure class="photo"><img src="images/image_012.jpg" alt="CMF2000 common-mode filter" loading="lazy"><figcaption><span class="ja">図2-10　CMF2000 コモンモードフィルター — TVI防止・RF回り込み防止・EMC改善を目的とし、アンテナ給電点およびIC-7760入力部へ設置</span><span class="en">Fig. 2-10 — CMF2000 common-mode filter, installed at the feed point and the IC-7760 input for TVI prevention, RF-ingress protection and EMC improvement</span></figcaption></figure>
+
+<h3><span class="ja">2.6　コンピュータ</span><span class="en">2.6 Computer</span></h3>
+<p><span class="ja">Windows Desktopを1台設置する。無線機（IC-7760操作部）とはUSBで接続する（詳細は第5章）。インストールソフトは第6章に示す。</span>
+<span class="en">One Windows desktop PC is installed, connected to the IC-7760 control head via USB (details in Chapter 5). Installed software is listed in Chapter 6.</span></p>
+
+<h3><span class="ja">2.7　電源設備・自動復帰システム</span><span class="en">2.7 Power &amp; Auto-Recovery System</span></h3>
+<p><span class="ja">大磯固定基地局はUPSによる電源バックアップを行い（停電・瞬停対策、安定運用、自動復帰システム保護）、24時間無人運転を可能とする自動復帰システムを実装する。</span>
+<span class="en">The Oiso Base Station is protected by a UPS (against outages and momentary drops, for stable operation and to protect the auto-recovery system), and implements an auto-recovery system enabling 24-hour unattended operation.</span></p>
+<p><span class="ja"><b>自動復帰システムの機能</b></span><span class="en"><b>Auto-recovery functions</b></span></p>
+<ul>
+<li><span class="ja">停電復旧後の自動起動</span><span class="en">Automatic start-up after power restoration</span></li>
+<li><span class="ja">Windows自動ログイン</span><span class="en">Automatic Windows login</span></li>
+<li><span class="ja">ネットワーク自動復旧</span><span class="en">Automatic network recovery</span></li>
+<li><span class="ja">WSJT-X等の必要ソフト自動起動</span><span class="en">Automatic launch of required software such as WSJT-X</span></li>
+<li><span class="ja">Wavelog接続確認</span><span class="en">Wavelog connectivity check</span></li>
+<li><span class="ja">遠隔運用可能状態への自動復帰</span><span class="en">Automatic return to remote-operable state</span></li>
+</ul>
+
+<!-- ============ 第3章 ============ -->
+<h2 id="ch3"><span class="ja">第3章　東京リモート局（Tokyo Remote Station : TRS）</span><span class="en">Chapter 3 — Tokyo Remote Station (TRS)</span><span class="ch-en">TOKYO REMOTE STATION</span></h2>
+
+<h3><span class="ja">3.1　役割</span><span class="en">3.1 Role</span></h3>
+<p><span class="ja">東京リモート局（TRS）は本システムのメイン運営基地である。東京都中央区日本橋マンション15階に設置し、大磯固定基地局のIC-7760を遠隔運用する。RF送信設備は持たず、送信地点は常に大磯固定基地局（OBS）である。</span>
+<span class="en">The Tokyo Remote Station (TRS) is the system's main operating base, located on the 15th floor of a residence in Nihonbashi, Chuo-ku, Tokyo, remotely operating the IC-7760 at Oiso. It has no RF transmission equipment; the transmitting site is always the Oiso Base Station.</span></p>
+<figure class="photo"><img src="images/trs_main.jpg" alt="Operating desk at TRS" loading="lazy"><figcaption><span class="ja">図3-1　東京リモート局 運用卓 — 東京・日本橋15階の運用デスク。大磯固定基地局のIC-7760を遠隔操作するメイン運営拠点であり、送信設備は持たない</span><span class="en">Fig. 3-1 — Operating desk of the Tokyo Remote Station, 15th floor, Nihonbashi: the main control point for the Oiso IC-7760, with no transmitting equipment of its own</span></figcaption></figure>
+
+<h3><span class="ja">3.2　構成</span><span class="en">3.2 Configuration</span></h3>
+<p><span class="ja">東京リモート局は、大磯固定基地局と同じ構成（無線機操作部・PC・周辺機器）を備える。RF送信設備を持たない点のみが異なる。</span>
+<span class="en">The TRS mirrors the OBS configuration (rig control head, PC, peripherals); the only difference is the absence of RF transmission equipment.</span></p>
+<ul>
+<li><span class="ja">IC-7760 リモートコンソール（操作部）</span><span class="en">IC-7760 remote console (control head)</span></li>
+<li>Windows Desktop</li>
+<li>UPS</li>
+<li><span class="ja">周辺機器</span><span class="en">Peripherals</span></li>
+</ul>
+<p><span class="ja">無線機とPCの接続は大磯固定基地局と同一構成（第5章）である。インストールソフトは第6章に示す。</span>
+<span class="en">Rig-to-PC connections are identical to the OBS (Chapter 5); installed software is listed in Chapter 6.</span></p>
+<figure class="photo"><img src="images/image_015.jpg" alt="IC-7760 remote console" loading="lazy"><figcaption><span class="ja">図3-2　IC-7760の遠隔操作（リモートコンソール） — ヤマハVPNで大磯固定基地局のIC-7760と接続し、手元で全機能を操作する。送信地点は常に大磯である</span><span class="en">Fig. 3-2 — Remote operation of the IC-7760: connected over the Yamaha VPN, every function is at the operator's fingertips; the transmitting site is always Oiso</span></figcaption></figure>
+
+<h3><span class="ja">3.3　運用</span><span class="en">3.3 Operation</span></h3>
+<p><span class="ja">東京リモート局から大磯固定基地局のIC-7760を直接遠隔運用する。FT8デコードおよび運用は東京リモート局でも実施できる。送信地点は大磯固定基地局であり、LoTWのStation Locationは『JL1EHQ_Oiso』を使用する。</span>
+<span class="en">The TRS directly operates the OBS's IC-7760. FT8 decoding and operation can also be performed at the TRS. Since the transmitting site is Oiso, the LoTW Station Location "JL1EHQ_Oiso" is used.</span></p>
+<figure class="photo"><img src="images/image_016.jpg" alt="View toward Skytree" loading="lazy"><figcaption><span class="ja">図3-3　東京リモート局からの眺望（東側窓・スカイツリー方面）</span><span class="en">Fig. 3-3 — View from the Tokyo Remote Station (east window, toward Tokyo Skytree)</span></figcaption></figure>
+<figure class="photo"><img src="images/image_017.jpg" alt="View over Nihonbashi" loading="lazy"><figcaption><span class="ja">図3-4　東京リモート局からの眺望（ベランダ・日本橋ビル群） — 大型アンテナは建てられないが、操作拠点としての眺望は抜群である</span><span class="en">Fig. 3-4 — View from the balcony over the Nihonbashi skyline: no room for big antennas, but a superb vantage point for a control site</span></figcaption></figure>
+
+<!-- ============ 第4章 ============ -->
+<h2 id="ch4"><span class="ja">第4章　ネットワーク構成</span><span class="en">Chapter 4 — Network Architecture</span><span class="ch-en">NETWORK</span></h2>
+
+<h3><span class="ja">4.1　基本構成</span><span class="en">4.1 Basic Structure</span></h3>
+<p><span class="ja">本システムは、以下の4拠点をネットワークで結ぶ。</span><span class="en">The system links the following four nodes:</span></p>
+<ul>
+<li><span class="ja">大磯固定基地局（OBS）</span><span class="en">Oiso Base Station (OBS)</span></li>
+<li><span class="ja">東京リモート局（TRS）</span><span class="en">Tokyo Remote Station (TRS)</span></li>
+<li><span class="ja">さくらVPS（クラウド）</span><span class="en">Sakura VPS (cloud)</span></li>
+<li>ThinkPad X13</li>
+</ul>
+<p><span class="ja">通信方式はHTTPS・ヤマハVPN・Tailscaleの3系統とし、用途を明確に分離する。</span>
+<span class="en">Three communication planes — HTTPS, Yamaha VPN and Tailscale — are kept strictly separated by purpose.</span></p>
+<figure><img src="images/image_029.png" alt="Network policy diagram" loading="lazy"><figcaption><span class="ja">図4-1　ネットワーク接続方針（VPN／Tailscale／HTTPS）</span><span class="en">Fig. 4-1 — Network connection policy (VPN / Tailscale / HTTPS)</span></figcaption></figure>
+
+<h3><span class="ja">4.2　ヤマハVPN</span><span class="en">4.2 Yamaha VPN</span></h3>
+<p><span class="ja">ヤマハVPNは、大磯固定基地局と東京リモート局間のIC-7760遠隔制御専用ネットワークとする。</span>
+<span class="en">The Yamaha VPN is a dedicated network between the OBS and TRS exclusively for IC-7760 remote control.</span></p>
+<p><span class="ja"><b>用途</b></span><span class="en"><b>Uses</b></span></p>
+<ul>
+<li><span class="ja">IC-7760 リモートコンソール</span><span class="en">IC-7760 remote console</span></li>
+<li><span class="ja">CAT制御・Audio伝送</span><span class="en">CAT control and audio transport</span></li>
+<li><span class="ja">RF運用</span><span class="en">RF operation</span></li>
+<li><span class="ja">両局間の低遅延・高信頼性通信</span><span class="en">Low-latency, high-reliability communication between the two sites</span></li>
+</ul>
+
+<h3><span class="ja">4.3　クラウド（さくらVPS）</span><span class="en">4.3 Cloud (Sakura VPS)</span></h3>
+<p><span class="ja">さくらVPSは、本システム全体のクラウド基盤であり、すべてのログ管理を一元化する中核システムである。大磯固定基地局・東京リモート局からはHTTPSでさくらVPS上のWavelogへアクセスする。</span>
+<span class="en">Sakura VPS is the cloud foundation of the entire system — the core that centralizes all log management. Both the OBS and TRS access Wavelog on the VPS over HTTPS.</span></p>
+<table>
+<tr><th><span class="ja">項目</span><span class="en">Item</span></th><th><span class="ja">内容</span><span class="en">Details</span></th></tr>
+<tr><td>OS</td><td>Ubuntu LTS</td></tr>
+<tr><td><span class="ja">仮想化</span><span class="en">Containers</span></td><td>Docker</td></tr>
+<tr><td><span class="ja">データベース</span><span class="en">Database</span></td><td>MariaDB</td></tr>
+<tr><td><span class="ja">ログシステム</span><span class="en">Logging system</span></td><td>Wavelog</td></tr>
+<tr><td><span class="ja">サーバーURL</span><span class="en">Server URL</span></td><td><span class="ja">（セキュリティのため非公開）</span><span class="en">(withheld for security)</span></td></tr>
+</table>
+<div class="omitted"><span class="ja">※ 図4-2〜図4-4（さくらVPS管理画面・契約情報・コンソール）は、サーバーの接続情報を含むため公開版では割愛しています。DockerおよびWavelogを運用するLinux環境である。</span><span class="en">* Figs. 4-2 to 4-4 (Sakura VPS console and account screens) are withheld in this public edition because they contain server connection details. The environment is a Linux host running Docker and Wavelog.</span></div>
+
+<h3><span class="ja">4.4　Tailscale</span><span class="en">4.4 Tailscale</span></h3>
+<p><span class="ja">Tailscaleは、ThinkPad X13への管理系リモートアクセス専用とする。</span>
+<span class="en">Tailscale is reserved for administrative remote access to the ThinkPad X13.</span></p>
+<p><span class="ja"><b>用途</b></span><span class="en"><b>Uses</b></span></p>
+<ul>
+<li><span class="ja">HAMLOG閲覧・保守</span><span class="en">Viewing and maintaining HAMLOG</span></li>
+<li><span class="ja">JARL関連処理確認</span><span class="en">Checking JARL-related processing</span></li>
+<li><span class="ja">ThinkPad X13メンテナンス</span><span class="en">ThinkPad X13 maintenance</span></li>
+</ul>
+<p><span class="ja">Tailscaleは無線機遠隔制御には使用しない。無線機遠隔制御はヤマハVPNが担う。</span>
+<span class="en">Tailscale is never used for rig control — that is the Yamaha VPN's role.</span></p>
+
+<!-- ============ 第5章 ============ -->
+<h2 id="ch5"><span class="ja">第5章　無線機接続構成</span><span class="en">Chapter 5 — Transceiver Connections</span><span class="ch-en">CONNECTIONS</span></h2>
+
+<h3><span class="ja">5.1　基本</span><span class="en">5.1 Basics</span></h3>
+<p><span class="ja">IC-7760（操作部）とWindows PCは、2系統のUSB接続で結ぶ。大磯固定基地局・東京リモート局とも同一の接続構成をとり、各拠点の無線機操作盤から、それぞれのWindows PCへ独立して接続する（大磯は大磯のPCへ、東京は東京のPCへ）。</span>
+<span class="en">The IC-7760 control head and the Windows PC are linked by two USB connections. Both sites use the identical configuration, each control head connecting independently to its local PC (Oiso to the Oiso PC, Tokyo to the Tokyo PC).</span></p>
+<ul>
+<li><span class="ja"><b>USB Audio</b> … FT8・CW等のデコード用音声を伝送する（受信音をPCへ、送信音をPCから無線機へ）。WSJT-X等のデジタル通信に用いる。</span><span class="en"><b>USB Audio</b> — carries audio for FT8/CW decoding (RX audio to the PC, TX audio from the PC to the rig); used by WSJT-X and other digital modes.</span></li>
+<li><span class="ja"><b>USB CAT（CI-V）</b> … 周波数・モードの取得とPTT（送信）制御を行う。取得した周波数・モードはWavelogへ自動入力される。</span><span class="en"><b>USB CAT (CI-V)</b> — reads frequency and mode and controls PTT; the captured frequency/mode is entered into Wavelog automatically.</span></li>
+</ul>
+<figure><img src="images/image_013.png" alt="Rig to PC connections" loading="lazy"><figcaption><span class="ja">図5-1　無線機（IC-7760）とPCの接続（USB Audio／USB CAT・CI-V）</span><span class="en">Fig. 5-1 — IC-7760 to PC connections (USB Audio / USB CAT, CI-V)</span></figcaption></figure>
+
+<h3><span class="ja">5.2　接続一覧</span><span class="en">5.2 Connection List</span></h3>
+<table>
+<tr><th><span class="ja">接続</span><span class="en">Connection</span></th><th><span class="ja">信号</span><span class="en">Signal</span></th><th><span class="ja">用途</span><span class="en">Purpose</span></th></tr>
+<tr><td>USB Audio</td><td><span class="ja">送受信音声</span><span class="en">TX/RX audio</span></td><td><span class="ja">FT8・CW等のデコード／変調（WSJT-X）</span><span class="en">Decoding / modulation of FT8, CW etc. (WSJT-X)</span></td></tr>
+<tr><td>USB CAT（CI-V）</td><td><span class="ja">周波数・モード・PTT</span><span class="en">Frequency, mode, PTT</span></td><td><span class="ja">周波数／モード取得・送信制御・Wavelog自動入力</span><span class="en">Frequency/mode capture, TX control, automatic Wavelog entry</span></td></tr>
+</table>
+<p><span class="ja">大磯固定基地局・東京リモート局は同一の接続構成をとり、各拠点の無線機操作盤からそれぞれのWindows PCへ接続する。</span>
+<span class="en">The OBS and TRS share the identical configuration, each control head connecting to its own Windows PC.</span></p>
+
+<!-- ============ 第6章 ============ -->
+<h2 id="ch6"><span class="ja">第6章　ソフト構成</span><span class="en">Chapter 6 — Software</span><span class="ch-en">SOFTWARE</span></h2>
+
+<h3><span class="ja">6.1　ソフトウェア分類</span><span class="en">6.1 Software Categories</span></h3>
+<table>
+<tr><th><span class="ja">分類</span><span class="en">Category</span></th><th><span class="ja">ソフトウェア</span><span class="en">Software</span></th></tr>
+<tr><td><span class="ja">デジタル通信</span><span class="en">Digital modes</span></td><td>WSJT-X, CW Skimmer</td></tr>
+<tr><td><span class="ja">ログ管理</span><span class="en">Logging</span></td><td>Wavelog, HAMLOG</td></tr>
+<tr><td><span class="ja">QSL連携</span><span class="en">QSL integration</span></td><td>TQSL, LoTW, eQSL, QRZ.com XML</td></tr>
+<tr><td><span class="ja">無線機制御</span><span class="en">Rig control</span></td><td><span class="ja">IC-7760 リモートコンソール</span><span class="en">IC-7760 Remote Console</span></td></tr>
+<tr><td><span class="ja">遠隔接続</span><span class="en">Remote connectivity</span></td><td><span class="ja">ヤマハVPN、Tailscale</span><span class="en">Yamaha VPN, Tailscale</span></td></tr>
+</table>
+
+<h3><span class="ja">6.2　大磯固定基地局</span><span class="en">6.2 Oiso Base Station</span></h3>
+<table>
+<tr><th><span class="ja">ソフトウェア</span><span class="en">Software</span></th><th><span class="ja">用途</span><span class="en">Purpose</span></th></tr>
+<tr><td>WSJT-X</td><td><span class="ja">FT8運用</span><span class="en">FT8 operation</span></td></tr>
+<tr><td>CW Skimmer</td><td><span class="ja">CWデコード・CW運用支援</span><span class="en">CW decoding and operating aid</span></td></tr>
+<tr><td>Wavelog</td><td><span class="ja">ログ管理</span><span class="en">Log management</span></td></tr>
+<tr><td>TQSL</td><td><span class="ja">LoTWアップロード</span><span class="en">LoTW upload</span></td></tr>
+<tr><td>eQSL</td><td><span class="ja">eQSL送受信</span><span class="en">eQSL send/receive</span></td></tr>
+<tr><td>QRZ.com XML</td><td><span class="ja">コールサイン検索</span><span class="en">Callsign lookup</span></td></tr>
+</table>
+
+<h3><span class="ja">6.3　東京リモート局</span><span class="en">6.3 Tokyo Remote Station</span></h3>
+<table>
+<tr><th><span class="ja">ソフトウェア</span><span class="en">Software</span></th><th><span class="ja">用途</span><span class="en">Purpose</span></th></tr>
+<tr><td><span class="ja">IC-7760 リモートコンソール</span><span class="en">IC-7760 Remote Console</span></td><td><span class="ja">IC-7760制御</span><span class="en">IC-7760 control</span></td></tr>
+<tr><td>WSJT-X</td><td><span class="ja">FT8運用</span><span class="en">FT8 operation</span></td></tr>
+<tr><td>CW Skimmer</td><td><span class="ja">CWデコード・CW運用支援</span><span class="en">CW decoding and operating aid</span></td></tr>
+<tr><td>Wavelog</td><td><span class="ja">ログ管理</span><span class="en">Log management</span></td></tr>
+<tr><td>TQSL</td><td><span class="ja">LoTWアップロード</span><span class="en">LoTW upload</span></td></tr>
+<tr><td>eQSL</td><td><span class="ja">eQSL送受信</span><span class="en">eQSL send/receive</span></td></tr>
+<tr><td>QRZ.com XML</td><td><span class="ja">コールサイン検索</span><span class="en">Callsign lookup</span></td></tr>
+</table>
+
+<h3><span class="ja">6.4　ThinkPad X13</span><span class="en">6.4 ThinkPad X13</span></h3>
+<table>
+<tr><th><span class="ja">ソフトウェア</span><span class="en">Software</span></th><th><span class="ja">用途</span><span class="en">Purpose</span></th></tr>
+<tr><td>HAMLOG</td><td><span class="ja">国内ログ</span><span class="en">Domestic logging</span></td></tr>
+<tr><td><span class="ja">JARL関連ソフト</span><span class="en">JARL-related software</span></td><td><span class="ja">QSL管理・JARL処理</span><span class="en">QSL management and JARL processing</span></td></tr>
+</table>
+
+<!-- ============ 第7章 ============ -->
+<h2 id="ch7"><span class="ja">第7章　ログ管理</span><span class="en">Chapter 7 — Log Management</span><span class="ch-en">LOG MANAGEMENT</span></h2>
+
+<h3><span class="ja">7.1　基本方針</span><span class="en">7.1 Policy</span></h3>
+<p><span class="ja">本システムでは、<b>Wavelogを正本（唯一のマスターログ／Single Source of Truth）とする</b>。LoTW・eQSL・QRZ.comとは、Wavelogから直接連携する（HAMLOGを経由しない）。HAMLOGはWavelogの副本であり、Wavelogから自動同期され、JARL情報・紙QSL等の国内運用を担う。</span>
+<span class="en"><b>Wavelog is the master log — the Single Source of Truth.</b> LoTW, eQSL and QRZ.com are fed directly from Wavelog (never via HAMLOG). HAMLOG is a replica, synced automatically from Wavelog, handling domestic work such as JARL data and paper QSLs.</span></p>
+<figure><img src="images/image_022.png" alt="Standard log-integration diagram" loading="lazy"><figcaption><span class="ja">図7-1　ログ連携の標準連携図 ― 全連携ソフトの全体像（Wavelog＝正本、HAMLOG＝副本）</span><span class="en">Fig. 7-1 — Standard log-integration map: all connected software (Wavelog = master, HAMLOG = replica)</span></figcaption></figure>
+<figure><img src="images/image_038.png" alt="Wavelog dashboard" loading="lazy"><figcaption><span class="ja">図7-2　Wavelogダッシュボード（本システム唯一のマスターログ） — すべてのQSO情報はWavelogへ登録し、他システムはWavelogから同期される。ログ修正はWavelogで実施し、HAMLOGは同期結果を保持する</span><span class="en">Fig. 7-2 — Wavelog dashboard, the system's sole master log: every QSO is registered here and propagated to the other systems; corrections are made in Wavelog, and HAMLOG holds the synced result</span></figcaption></figure>
+
+<h3><span class="ja">7.2　モード別のログ登録</span><span class="en">7.2 Logging by Mode</span></h3>
+<table>
+<tr><th><span class="ja">モード</span><span class="en">Mode</span></th><th><span class="ja">登録方法</span><span class="en">Entry method</span></th><th><span class="ja">連携</span><span class="en">Integration</span></th></tr>
+<tr><td>FT8</td><td><span class="ja">完全自動登録（WSJT-X → Wavelog）</span><span class="en">Fully automatic (WSJT-X → Wavelog)</span></td><td><span class="ja">Wavelogから直接連携／HAMLOG自動同期</span><span class="en">Direct from Wavelog / auto-sync to HAMLOG</span></td></tr>
+<tr><td>CW</td><td><span class="ja">Wavelogへ手入力</span><span class="en">Manual entry in Wavelog</span></td><td><span class="ja">Wavelogから直接連携／HAMLOG自動同期</span><span class="en">Direct from Wavelog / auto-sync to HAMLOG</span></td></tr>
+<tr><td>SSB</td><td><span class="ja">Wavelogへ手入力</span><span class="en">Manual entry in Wavelog</span></td><td><span class="ja">Wavelogから直接連携／HAMLOG自動同期</span><span class="en">Direct from Wavelog / auto-sync to HAMLOG</span></td></tr>
+</table>
+
+<h3><span class="ja">7.3　Wavelogの役割</span><span class="en">7.3 Wavelog's Role</span></h3>
+<ul>
+<li><span class="ja">マスターログ管理・QSO履歴管理</span><span class="en">Master log and QSO history management</span></li>
+<li><span class="ja">DXCC／WAS／WAZ管理</span><span class="en">DXCC / WAS / WAZ tracking</span></li>
+<li><span class="ja">LoTW連携・eQSL連携・QRZ.com XML連携</span><span class="en">LoTW, eQSL and QRZ.com XML integration</span></li>
+<li><span class="ja">HAMLOG同期</span><span class="en">HAMLOG synchronization</span></li>
+</ul>
+
+<!-- ============ 第8章 ============ -->
+<h2 id="ch8"><span class="ja">第8章　LoTW</span><span class="en">Chapter 8 — LoTW</span><span class="ch-en">LOGBOOK OF THE WORLD</span></h2>
+
+<h3><span class="ja">8.1　基本方針</span><span class="en">8.1 Policy</span></h3>
+<p><span class="ja">LoTWはWavelogから管理する。LoTWへはWavelogから直接連携する（TQSL経由）。</span>
+<span class="en">LoTW is managed from Wavelog, with direct uploads via TQSL.</span></p>
+<figure><img src="images/image_023.png" alt="LoTW integration" loading="lazy"><figcaption><span class="ja">図8-1　LoTW連携（標準連携図・該当部を強調）</span><span class="en">Fig. 8-1 — LoTW integration (standard map, relevant path highlighted)</span></figcaption></figure>
+<figure><img src="images/image_037.png" alt="ARRL LoTW" loading="lazy"><figcaption><span class="ja">図8-2　ARRL Logbook of the World（LoTW） — ARRLが運営する世界標準の交信証明システム。WavelogからTQSL経由でアップロードする</span><span class="en">Fig. 8-2 — ARRL Logbook of the World: the world-standard QSO confirmation system, uploaded to from Wavelog via TQSL</span></figcaption></figure>
+
+<h3><span class="ja">8.2　Station Location</span><span class="en">8.2 Station Location</span></h3>
+<p><span class="ja">使用するStation Locationは<b>JL1EHQ_Oiso</b>。大磯固定基地局・東京リモート局とも同一Station Locationを使用する。理由は、送信地点が常に大磯固定基地局であるためである。</span>
+<span class="en">The Station Location <b>JL1EHQ_Oiso</b> is used by both sites, because the transmitting site is always the Oiso Base Station.</span></p>
+
+<h3><span class="ja">8.3　TQSLと運用</span><span class="en">8.3 TQSL and Operation</span></h3>
+<p><span class="ja">TQSLは大磯固定基地局・東京リモート局の双方へインストールし、WavelogからLoTWアップロードを実施する。</span>
+<span class="en">TQSL is installed at both sites; uploads to LoTW are performed from Wavelog.</span></p>
+<figure><img src="images/image_036.png" alt="TQSL certificate" loading="lazy"><figcaption><span class="ja">図8-3　TQSL コールサイン証明書（JL1EHQ） — LoTWアップロードに使用するコールサイン証明書</span><span class="en">Fig. 8-3 — TQSL callsign certificate (JL1EHQ), used for LoTW uploads</span></figcaption></figure>
+<table>
+<tr><th><span class="ja">モード</span><span class="en">Mode</span></th><th><span class="ja">運用</span><span class="en">Workflow</span></th></tr>
+<tr><td>FT8</td><td><span class="ja">自動登録後アップロード</span><span class="en">Upload after automatic logging</span></td></tr>
+<tr><td>CW</td><td><span class="ja">Wavelog登録後アップロード</span><span class="en">Upload after Wavelog entry</span></td></tr>
+<tr><td>SSB</td><td><span class="ja">Wavelog登録後アップロード</span><span class="en">Upload after Wavelog entry</span></td></tr>
+</table>
+
+<!-- ============ 第9章 ============ -->
+<h2 id="ch9"><span class="ja">第9章　eQSL</span><span class="en">Chapter 9 — eQSL</span><span class="ch-en">EQSL</span></h2>
+
+<h3><span class="ja">9.1　基本方針</span><span class="en">9.1 Policy</span></h3>
+<p><span class="ja">eQSLはWavelogより送受信する。eQSLへはWavelogから直接連携する。</span>
+<span class="en">eQSL cards are sent and received from Wavelog, with direct integration.</span></p>
+<figure><img src="images/image_024.png" alt="eQSL integration" loading="lazy"><figcaption><span class="ja">図9-1　eQSL連携（標準連携図・該当部を強調）</span><span class="en">Fig. 9-1 — eQSL integration (standard map, relevant path highlighted)</span></figcaption></figure>
+
+<h3><span class="ja">9.2　運用</span><span class="en">9.2 Workflow</span></h3>
+<table>
+<tr><th><span class="ja">モード</span><span class="en">Mode</span></th><th><span class="ja">運用</span><span class="en">Workflow</span></th></tr>
+<tr><td>FT8</td><td><span class="ja">自動</span><span class="en">Automatic</span></td></tr>
+<tr><td>CW</td><td><span class="ja">Wavelog手動入力</span><span class="en">Manual entry in Wavelog</span></td></tr>
+<tr><td>SSB</td><td><span class="ja">Wavelog手動入力</span><span class="en">Manual entry in Wavelog</span></td></tr>
+</table>
+
+<!-- ============ 第10章 ============ -->
+<h2 id="ch10"><span class="ja">第10章　QRZ.com XML</span><span class="en">Chapter 10 — QRZ.com XML</span><span class="ch-en">QRZ.COM XML</span></h2>
+
+<h3><span class="ja">10.1　目的</span><span class="en">10.1 Purpose</span></h3>
+<p><span class="ja">QRZ.com XMLを利用し、コールサイン情報を取得する。QRZ.comへはWavelogから直接連携する。</span>
+<span class="en">The QRZ.com XML service is used to look up callsign information, integrated directly from Wavelog.</span></p>
+<figure><img src="images/image_044.png" alt="QRZ.com JL1EHQ page" loading="lazy"><figcaption><span class="ja">図10-1　QRZ.com（JL1EHQページ）</span><span class="en">Fig. 10-1 — QRZ.com (JL1EHQ page)</span></figcaption></figure>
+<figure><img src="images/image_026.png" alt="QRZ integration" loading="lazy"><figcaption><span class="ja">図10-2　QRZ.com連携（標準連携図・該当部を強調）</span><span class="en">Fig. 10-2 — QRZ.com integration (standard map, relevant path highlighted)</span></figcaption></figure>
+
+<h3><span class="ja">10.2　利用目的と運用</span><span class="en">10.2 Uses and Operation</span></h3>
+<ul>
+<li><span class="ja">コールサイン情報取得（名前・QTH取得）</span><span class="en">Callsign lookups (name and QTH)</span></li>
+<li><span class="ja">ログ補完</span><span class="en">Log enrichment</span></li>
+</ul>
+<p><span class="ja">Wavelogから利用し、大磯固定基地局・東京リモート局とも同一アカウントを使用する。</span>
+<span class="en">Used from Wavelog, with the same account at both sites.</span></p>
+
+<!-- ============ 第11章 ============ -->
+<h2 id="ch11"><span class="ja">第11章　HAMLOG</span><span class="en">Chapter 11 — HAMLOG</span><span class="ch-en">HAMLOG</span></h2>
+
+<h3><span class="ja">11.1　目的・役割</span><span class="en">11.1 Purpose and Role</span></h3>
+<p><span class="ja">HAMLOGは国内運用専用システムとする。国内局管理・JARL管理・紙QSL管理・国内検索を担う。</span>
+<span class="en">HAMLOG is dedicated to domestic operation: managing Japanese stations, JARL affairs, paper QSLs and domestic lookups.</span></p>
+<figure><img src="images/image_042.png" alt="Turbo HAMLOG" loading="lazy"><figcaption><span class="ja">図11-1　Turbo HAMLOG/Win（JL1EHQ） — ThinkPad X13上で稼働する国内運用専用ログシステム</span><span class="en">Fig. 11-1 — Turbo HAMLOG/Win (JL1EHQ), the domestic-only logging system running on the ThinkPad X13</span></figcaption></figure>
+
+<h3><span class="ja">11.2　基本方針</span><span class="en">11.2 Policy</span></h3>
+<p><span class="ja">HAMLOGはマスターログではない。マスター（正本）はWavelogである。HAMLOGはWavelogの副本であり、Wavelogから自動同期される。LoTW・eQSL・QRZ.comはHAMLOGを経由せず、Wavelogから直接連携する。</span>
+<span class="en">HAMLOG is not the master log — Wavelog is. HAMLOG is a replica, synced automatically from Wavelog. LoTW, eQSL and QRZ.com never route through HAMLOG.</span></p>
+<figure><img src="images/image_021.png" alt="Wavelog to HAMLOG sync" loading="lazy"><figcaption><span class="ja">図11-2　Wavelog → HAMLOG 自動同期（標準連携図・該当部を強調）</span><span class="en">Fig. 11-2 — Wavelog → HAMLOG automatic sync (standard map, relevant path highlighted)</span></figcaption></figure>
+<figure><img src="images/image_027.png" alt="HAMLOG integration" loading="lazy"><figcaption><span class="ja">図11-3　HAMLOG連携（標準連携図・該当部を強調） — HAMLOGはWavelogから自動同期され、HAMLOGからWavelogへ戻す運用は行わない</span><span class="en">Fig. 11-3 — HAMLOG integration: HAMLOG is synced from Wavelog; nothing ever flows back from HAMLOG to Wavelog</span></figcaption></figure>
+
+<h3><span class="ja">11.3　運用</span><span class="en">11.3 Operation</span></h3>
+<p><span class="ja">HAMLOGはThinkPad X13で管理する。大磯固定基地局・東京リモート局からはTailscale経由で必要時のみ利用する（情報閲覧）。通常運転ではX13を直接操作しない。</span>
+<span class="en">HAMLOG lives on the ThinkPad X13, accessed from the OBS/TRS via Tailscale only when needed (read-only reference). In normal operation the X13 is not touched directly.</span></p>
+
+<!-- ============ 第12章 ============ -->
+<h2 id="ch12"><span class="ja">第12章　JARL運用</span><span class="en">Chapter 12 — JARL Operations</span><span class="ch-en">JARL</span></h2>
+
+<h3><span class="ja">12.1　目的</span><span class="en">12.1 Purpose</span></h3>
+<p><span class="ja">JARLに関する国内運用を効率化する。</span><span class="en">To streamline domestic operations related to JARL.</span></p>
+<figure><img src="images/image_043.png" alt="JARL member search" loading="lazy"><figcaption><span class="ja">図12-1　JARL会員検索（JL1EHQ・QSLカード転送可） — JARL QSLビューローを経由してQSLカードの転送ができる会員として登録されている</span><span class="en">Fig. 12-1 — JARL member lookup (JL1EHQ, QSL forwarding enabled): registered so that QSL cards can be forwarded via the JARL QSL bureau</span></figcaption></figure>
+
+<h3><span class="ja">12.2　運用システムとデータフロー</span><span class="en">12.2 Systems and Data Flow</span></h3>
+<p><span class="ja">JARL運用はThinkPad X13上のHAMLOGを使用する。Wavelogはマスターログとして情報を提供する。</span>
+<span class="en">JARL work is done in HAMLOG on the ThinkPad X13, with Wavelog supplying the data as master log.</span></p>
+<figure><img src="images/image_028.png" alt="JARL integration" loading="lazy"><figcaption><span class="ja">図12-2　JARL連携（標準連携図・該当部を強調）</span><span class="en">Fig. 12-2 — JARL integration (standard map, relevant path highlighted)</span></figcaption></figure>
+
+<!-- ============ 第13章 ============ -->
+<h2 id="ch13"><span class="ja">第13章　UPSシステム</span><span class="en">Chapter 13 — UPS System</span><span class="ch-en">UPS</span></h2>
+
+<h3><span class="ja">13.1　目的</span><span class="en">13.1 Purpose</span></h3>
+<p><span class="ja">本システムの安定運用を実現し、停電・瞬停時にもシステムを保護する。大磯固定基地局・東京リモート局ともUPSを標準構成とする。</span>
+<span class="en">To ensure stable operation and protect the system through outages and momentary power drops. A UPS is standard equipment at both sites.</span></p>
+
+<h3><span class="ja">13.2　大磯固定基地局</span><span class="en">13.2 Oiso Base Station</span></h3>
+<p><span class="ja">保護対象：IC-7760／Windows Desktop／ネットワーク機器／アンテナ制御機器／周辺機器。大磯固定基地局のUPSは自動復帰システム（第2章 2.7）を保護し、24時間無人運転を支える。</span>
+<span class="en">Protected loads: IC-7760, Windows desktop, network equipment, antenna control gear and peripherals. The OBS UPS safeguards the auto-recovery system (Section 2.7), supporting 24-hour unattended operation.</span></p>
+
+<h3><span class="ja">13.3　東京リモート局</span><span class="en">13.3 Tokyo Remote Station</span></h3>
+<p><span class="ja">保護対象：Windows Desktop／IC-7760 リモートコンソール／ネットワーク機器／周辺機器。</span>
+<span class="en">Protected loads: Windows desktop, IC-7760 remote console, network equipment and peripherals.</span></p>
+
+<!-- ============ 第14章 ============ -->
+<h2 id="ch14"><span class="ja">第14章　AI（人工知能）エージェント（Version2.0）構想</span><span class="en">Chapter 14 — AI Agent Concept (Version 2.0)</span><span class="ch-en">AI AGENTS</span></h2>
+
+<p><span class="ja">Version2.0では、Version1.0で完成した「身体（遠隔運用）」と「記憶（クラウドログ）」の土台の上に、AI（人工知能）エージェント群を実装する。クラウド上のWavelogに蓄積された全データ（交信記録・DXCC・伝搬・設備情報）をAIが学習・分析し、運用者を支援する「考える無線局」へと進化させる。</span>
+<span class="en">Version 2.0 deploys a team of AI agents on the foundation completed in Version 1.0 — the "body" (remote operation) and the "memory" (cloud logging). AI learns from and analyzes everything accumulated in Wavelog (QSO records, DXCC status, propagation, station data), evolving the station into a "thinking station" that supports its operator.</span></p>
+<p><span class="ja">すべてのエージェントは統括AIオペレーター（Chief Cyber Operator）が束ね、運用者へは整理された提案として届ける。ただし、本システムの中心思想は変わらない――情報の整理・分析・提案はAIが担い、最終判断と交信そのものは、常に運用者（人間）が行う。</span>
+<span class="en">All agents are coordinated by a Chief Cyber Operator, which delivers curated proposals to the operator. The core philosophy is unchanged: AI organizes, analyzes and proposes — the final decision, and every QSO, always belong to the human operator.</span></p>
+<figure><img src="images/image_032.png" alt="AI agent lineup" loading="lazy"><figcaption><span class="ja">図14-1　Version2.0 AIエージェント群と日本語名称・主な役割</span><span class="en">Fig. 14-1 — Version 2.0 AI agents: names and primary roles</span></figcaption></figure>
+
+<h3><span class="ja">14.1　AIエージェント一覧</span><span class="en">14.1 Agent Lineup</span></h3>
+<table>
+<tr><th><span class="ja">日本語名称</span><span class="en">Name (JA)</span></th><th><span class="ja">英語名（コード名）</span><span class="en">Code name</span></th><th><span class="ja">主な役割</span><span class="en">Primary role</span></th></tr>
+<tr><td><span class="ja">統括AIオペレーター</span><span class="en">Chief AI Operator</span></td><td>Chief Cyber Operator</td><td><span class="ja">全エージェントの統括・最終提案</span><span class="en">Coordinates all agents; final proposals</span></td></tr>
+<tr><td><span class="ja">設備見守りエージェント</span><span class="en">Station Health Agent</span></td><td>Station Health Agent</td><td><span class="ja">設備・電源・ネットワークの監視</span><span class="en">Monitors equipment, power and network</span></td></tr>
+<tr><td><span class="ja">DX探索エージェント</span><span class="en">DX Agent</span></td><td>DX Agent</td><td><span class="ja">珍しい局・未交信エンティティの探索</span><span class="en">Hunts rare stations and unworked entities</span></td></tr>
+<tr><td><span class="ja">伝搬予測エージェント</span><span class="en">Propagation Agent</span></td><td>Propagation Agent</td><td><span class="ja">電波伝搬の予測</span><span class="en">Forecasts radio propagation</span></td></tr>
+<tr><td><span class="ja">アワード管理エージェント</span><span class="en">Award Agent</span></td><td>Award Agent</td><td><span class="ja">DXCC・WAS・WAZ等の進捗管理</span><span class="en">Tracks DXCC, WAS, WAZ progress</span></td></tr>
+<tr><td><span class="ja">コンテスト作戦エージェント</span><span class="en">Contest Agent</span></td><td>Contest Agent</td><td><span class="ja">コンテスト運用の作戦支援</span><span class="en">Contest strategy support</span></td></tr>
+<tr><td><span class="ja">交信分析エージェント</span><span class="en">QSO Intelligence Agent</span></td><td>QSO Intelligence Agent</td><td><span class="ja">交信記録の分析・提案</span><span class="en">Analyzes QSO records and proposes actions</span></td></tr>
+</table>
+
+<h3><span class="ja">14.2　各エージェントの構想</span><span class="en">14.2 Agent Concepts</span></h3>
+
+<p><span class="ja"><b>統括AIオペレーター（Chief Cyber Operator）</b> — 無線局全体を見守る「司令塔」。各エージェントが出した情報を一つに束ね、運用者にとって「いま最も有益な一手」を厳選して提案する。</span>
+<span class="en"><b>Chief Cyber Operator</b> — the "command tower" watching over the whole station, weaving each agent's findings into the single most valuable next move for the operator.</span></p>
+<ul>
+<li><span class="ja">各エージェントの分析結果を統合し、優先順位をつけて通知する</span><span class="en">Integrates the agents' analyses and notifies with priorities assigned</span></li>
+<li><span class="ja">無線局全体の状態（設備・伝搬・ログ・QSL）を俯瞰し、見落としを防ぐ</span><span class="en">Oversees the whole station — equipment, propagation, logs, QSLs — preventing oversights</span></li>
+<li><span class="ja">運用者の好みや運用スタイルを学習し、提案を個別に最適化する</span><span class="en">Learns the operator's preferences and style, personalizing its proposals</span></li>
+<li><span class="ja">「今夜ヨーロッパは狙えるか」など、自然な言葉での対話に応える</span><span class="en">Answers natural-language questions like "Can I work Europe tonight?"</span></li>
+</ul>
+
+<p><span class="ja"><b>設備見守りエージェント（Station Health Agent）</b> — 無人運転を支える「保守の番人」。大磯固定基地局・東京リモート局の機器を常時監視し、トラブルを未然に防ぐ。</span>
+<span class="en"><b>Station Health Agent</b> — the "guardian of maintenance" behind unattended operation, continuously monitoring both sites to stop trouble before it starts.</span></p>
+<ul>
+<li><span class="ja">IC-7760・PC・ネットワーク・UPS・室温などを24時間監視する</span><span class="en">Monitors the IC-7760, PCs, network, UPS and room temperature 24/7</span></li>
+<li><span class="ja">停電・VPN切断・SWR異常などの予兆を検知し、即時に通知する</span><span class="en">Detects early signs of outages, VPN drops or SWR anomalies and alerts instantly</span></li>
+<li><span class="ja">自動復帰システムと連携し、復旧手順の提示や一部の自動復旧を行う</span><span class="en">Works with the auto-recovery system, presenting recovery steps and automating parts of them</span></li>
+<li><span class="ja">稼働ログを蓄積し、メンテナンスの最適な時期を予測する</span><span class="en">Accumulates operating logs to predict the best maintenance timing</span></li>
+</ul>
+
+<p><span class="ja"><b>DX探索エージェント（DX Agent）</b> — 世界への「水先案内人」。膨大なスポット情報の中から、自分に必要な好機だけを抜き出す。</span>
+<span class="en"><b>DX Agent</b> — the "pilot" to the world, extracting only the opportunities that matter from a flood of spots.</span></p>
+<ul>
+<li><span class="ja">DXクラスター等のスポット情報を収集し、未交信エンティティを自動抽出する</span><span class="en">Collects DX-cluster spots and automatically extracts unworked entities</span></li>
+<li><span class="ja">「いま・このバンド・この方角でニューが狙える」好機を通知する</span><span class="en">Alerts to chances of a new one — now, on this band, in this direction</span></li>
+<li><span class="ja">DXペディションの予定を取り込み、運用開始前にアラートを出す</span><span class="en">Ingests DXpedition schedules and alerts before operations begin</span></li>
+<li><span class="ja">自局のログと突き合わせ、本当に必要な局だけを厳選して提示する</span><span class="en">Cross-checks against the station log to present only truly needed stations</span></li>
+</ul>
+
+<p><span class="ja"><b>伝搬予測エージェント（Propagation Agent）</b> — 見えない電波の道を読む「気象予報士」。いつ・どこが開けるかを先読みする。</span>
+<span class="en"><b>Propagation Agent</b> — the "weather forecaster" of invisible radio paths, predicting when and where the bands will open.</span></p>
+<ul>
+<li><span class="ja">太陽活動（SFI・黒点数・A/K指数）と電離層の状態を取り込む</span><span class="en">Ingests solar activity (SFI, sunspots, A/K indices) and ionospheric conditions</span></li>
+<li><span class="ja">「何時に・どのバンドで・どの方角が開くか」を時間帯マップで提示する</span><span class="en">Presents time-of-day maps of which band opens where, and when</span></li>
+<li><span class="ja">自局の過去実績を学習し、自分のアンテナでの現実的な飛びを予測する</span><span class="en">Learns from the station's own history to predict realistic reach with its antennas</span></li>
+<li><span class="ja">グレーライン・MUF等を考慮し、最も有利な運用時間帯を提案する</span><span class="en">Accounts for grey-line and MUF to propose the most advantageous operating windows</span></li>
+</ul>
+
+<p><span class="ja"><b>アワード管理エージェント（Award Agent）</b> — 達成への「伴走者」。各種アワードの進捗を可視化し、ゴールまでの道筋を示す。</span>
+<span class="en"><b>Award Agent</b> — the "running mate" toward achievement, visualizing award progress and the path to each goal.</span></p>
+<ul>
+<li><span class="ja">DXCC・WAS・WAZ・JCC/JCG等の進捗を自動集計し、可視化する</span><span class="en">Automatically tallies and visualizes DXCC, WAS, WAZ, JCC/JCG progress</span></li>
+<li><span class="ja">「あと何が必要か」を一覧化し、不足しているエンティティを提示する</span><span class="en">Lists exactly what remains, surfacing missing entities</span></li>
+<li><span class="ja">DX探索・伝搬予測と連携し、不足分を効率よく埋める機会を提案する</span><span class="en">Teams up with the DX and Propagation agents to propose efficient chances to fill the gaps</span></li>
+<li><span class="ja">申請に必要なQSL・証明の充足状況をチェックする</span><span class="en">Checks whether the QSLs and confirmations needed for applications are in hand</span></li>
+</ul>
+
+<p><span class="ja"><b>コンテスト作戦エージェント（Contest Agent）</b> — 勝つための「参謀」。ルールを読み解き、得点効率の高い戦い方を提案する。</span>
+<span class="en"><b>Contest Agent</b> — the "chief of staff" for winning, decoding the rules and proposing the highest-scoring way to fight.</span></p>
+<ul>
+<li><span class="ja">コンテストカレンダーを管理し、参加候補を事前に通知する</span><span class="en">Manages the contest calendar and flags candidate events in advance</span></li>
+<li><span class="ja">ルールと得点体系を解析し、バンド・時間配分の作戦を提案する</span><span class="en">Analyzes rules and scoring to propose band and time-allocation strategy</span></li>
+<li><span class="ja">運用中はマルチ・重複を判定し、次に狙うべき局・マルチを提示する</span><span class="en">During the contest, judges multipliers and dupes, pointing to the next target</span></li>
+<li><span class="ja">終了後はログを点検し、提出フォーマットへの変換を支援する</span><span class="en">Afterwards, checks the log and assists conversion to the submission format</span></li>
+</ul>
+
+<p><span class="ja"><b>交信分析エージェント（QSO Intelligence Agent）</b> — 経験を知恵に変える「分析官」。蓄積したログから、次の一手のヒントを引き出す。</span>
+<span class="en"><b>QSO Intelligence Agent</b> — the "analyst" that turns experience into wisdom, mining the accumulated log for hints toward the next move.</span></p>
+<ul>
+<li><span class="ja">全交信記録を分析し、運用傾向（得意バンド・時間帯・地域）を可視化する</span><span class="en">Analyzes every QSO to visualize operating tendencies — strong bands, hours, regions</span></li>
+<li><span class="ja">手薄なエリアや伸ばせるアワードなど「次の一手」を抽出する</span><span class="en">Extracts the "next move": under-served areas, awards within reach</span></li>
+<li><span class="ja">QSL（LoTW・eQSL・紙）の回収状況を分析し、フォロー先を提案する</span><span class="en">Analyzes QSL returns (LoTW, eQSL, paper) and suggests where to follow up</span></li>
+<li><span class="ja">長期の成長を記録し、振り返りのレポートを生成する</span><span class="en">Records long-term growth and generates retrospective reports</span></li>
+</ul>
+
+<h3><span class="ja">14.3　基本思想</span><span class="en">14.3 Philosophy</span></h3>
+<p><span class="ja">これらのエージェントは、いずれも「人の代わりに無線をするAI」ではない。情報の整理・分析・提案に徹し、運用の主役は常に人間である。</span>
+<span class="en">None of these agents is an "AI that does radio instead of a human." They confine themselves to organizing, analyzing and proposing — the human is always the protagonist.</span></p>
+<div class="quote"><span class="ja">――主役は人間であり、AIは人間の可能性を広げる最高のパートナーである。</span><span class="en">— Humans play the leading role; AI is the ultimate partner that expands human potential.</span></div>
+
+<!-- ============ プロフィール ============ -->
+<h2 id="profile"><span class="ja">著者プロフィール</span><span class="en">About the Author</span><span class="ch-en">PROFILE</span></h2>
+<figure class="photo" style="max-width:280px"><img src="images/image_033.jpg" alt="Toshio Takagi"></figure>
+<p><span class="ja"><b>髙木 俊郎（たかぎ・としお）　コールサイン JL1EHQ</b></span><span class="en"><b>Toshio Takagi — Callsign JL1EHQ</b></span></p>
+<p><span class="ja">株式会社アルファTKG 代表取締役会長。電気通信大学を卒業後、株式会社アマダに入社。37年にわたり販売畑一筋。世界中の工場の現場を歩き、海外本部長、専務取締役を歴任。その後、株式会社アルファTKGを創業し、13年になる。</span>
+<span class="en">Founder and Chairman of alfaTKG Co., Ltd. After graduating from the University of Electro-Communications, he joined AMADA Co., Ltd., devoting 37 years to sales — walking factory floors around the world, serving as Head of Overseas Operations and Senior Managing Director. He then founded alfaTKG, now in its 13th year.</span></p>
+<p><span class="ja">「機械・電気・ソフトウェア」――いまや、この三つが、人生のすべてであるが、そのきっかけとなったのが、少年の日に出会った、アマチュア無線だった。</span>
+<span class="en">Machines, electronics, software — today these three are his whole life, and the spark for all of them was amateur radio, encountered as a boy.</span></p>
+<p><span class="ja">少年時代を長野県長野市で過ごし、小学六年生のとき、トリオの組み立てキット――受信機 9R-59 と送信機 TX-88A――を自分で組み上げ、わずか10ワットの電波で、初めてアメリカ東海岸の局と交信する。その日の胸の高鳴りが、その後の人生を、決定づけた。同じころ、第二級アマチュア無線技士の資格を取得。当時授かったコールサイン JA0DVN は、いまも移動局として大切に使い続けている。</span>
+<span class="en">He grew up in Nagano City. In sixth grade he hand-built Trio kits — the 9R-59 receiver and TX-88A transmitter — and with a mere 10 watts made his first contact with a station on the US East Coast. The pounding of his heart that day decided the rest of his life. Around the same time he earned his 2nd-Class Amateur Radio Operator license; the callsign he received then, JA0DVN, is still cherished and used as his portable station today.</span></p>
+<p><span class="ja">近年、最新型無線機アイコム IC-7760 の登場によって、遠隔操作の時代の到来を知り、神奈川県・大磯の自宅に構築した HF200W 固定局を、東京・日本橋から遠隔操作で運用する『遠隔操作無線システム』を構築。近年めざましく進歩する AI（人工知能）が、アマチュア無線にもたらす〈衝撃〉を、自らの手で実践すべく、いまも挑み続けている。</span>
+<span class="en">With the arrival of ICOM's flagship IC-7760 he saw that the age of remote operation had come, and built this remote-controlled radio system: a 200W HF fixed station at his Oiso home, operated from Nihonbashi, Tokyo. He continues to challenge himself, testing with his own hands the impact that rapidly advancing AI is bringing to amateur radio.</span></p>
+<p><span class="ja">東京リモート局：東京都日本橋本町　大磯固定基地局：神奈川県中郡大磯町　email：tt2833 (at) icloud.com</span>
+<span class="en">Tokyo Remote Station: Nihonbashi-Honcho, Tokyo ／ Oiso Base Station: Oiso-machi, Naka-gun, Kanagawa ／ email: tt2833 (at) icloud.com</span></p>
+
+<div class="doc-end">
+  <div class="display">END OF SPECIFICATION</div>
+  <div><span class="ja">JL1EHQ 遠隔操作無線システム Version 1.0 Final — Master Specification（Document No. JL1EHQ-CRA-V1-FMS-001）　著者：髙木俊郎（JL1EHQ）</span>
+  <span class="en">JL1EHQ Remote-Controlled Radio System, Version 1.0 Final — Master Specification (Document No. JL1EHQ-CRA-V1-FMS-001). Author: Toshio Takagi (JL1EHQ)</span></div>
+</div>
+
+</main>
+</div>
+
+<footer class="site-footer" style="background:none;border-top:1px solid rgba(120,190,255,.1);color:var(--text-dim);padding:34px;text-align:center;font-size:12px">
+  <span class="ja">© 2026 髙木俊郎（JL1EHQ） — <a href="index.html">jl1ehq.com</a></span>
+  <span class="en">© 2026 Toshio Takagi (JL1EHQ) — <a href="index.html">jl1ehq.com</a></span>
+</footer>
+
+<script src="assets/spec.js"></script>
+</body>
+</html>

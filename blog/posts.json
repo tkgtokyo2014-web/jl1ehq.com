@@ -1,0 +1,18 @@
+[
+  {
+    "date": "2026-07-07",
+    "file": "2026-07-07-website-v2.md",
+    "title_ja": "公式サイト Version 2.0 を公開しました",
+    "title_en": "Official Website Version 2.0 is Live",
+    "summary_ja": "jl1ehq.com を全面リニューアル。AI×アマチュア無線×リモート×DXをテーマに、日英完全対応の新サイトが誕生しました。",
+    "summary_en": "jl1ehq.com has been completely redesigned — a fully bilingual site themed on AI × Amateur Radio × Remote Station × DX."
+  },
+  {
+    "date": "2026-07-01",
+    "file": "2026-07-01-cyber-station.md",
+    "title_ja": "「サイバー局」構想 — 考える無線局への道",
+    "title_en": "The Cyber Station Concept — Toward a Thinking Station",
+    "summary_ja": "遠隔運用という身体、クラウドログという記憶。その上にAIエージェント群を実装する構想の全体像を紹介します。",
+    "summary_en": "Remote operation as the body, cloud logging as the memory — and a team of AI agents on top. An overview of the concept."
+  }
+]

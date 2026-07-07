@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="ja" class="lang-ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>JL1EHQ Official Website — AI × Amateur Radio × Remote Station × DX</title>
+<meta name="description" content="JL1EHQ（髙木俊郎）公式サイト。AIと共創するアマチュア無線革命 — 大磯200W HF固定局を東京・日本橋から遠隔運用し、クラウドログとAIエージェントで進化する次世代無線局。The Future of Amateur Radio, Powered by AI.">
+<meta name="keywords" content="JL1EHQ, アマチュア無線, Amateur Radio, AI, Remote Station, DX, IC-7760, Wavelog, リモート運用">
+<link rel="canonical" href="https://jl1ehq.com/">
+<!-- OGP -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="JL1EHQ Official Website">
+<meta property="og:title" content="JL1EHQ — The Future of Amateur Radio, Powered by AI">
+<meta property="og:description" content="AIと共創するアマチュア無線革命。大磯200W HF固定局×東京リモート運用×クラウドログ×AIエージェント。">
+<meta property="og:url" content="https://jl1ehq.com/">
+<meta property="og:image" content="https://jl1ehq.com/images/antenna_mast.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="apple-touch-icon" href="favicon.svg">
+<!-- fonts (minimal external) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;800&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/v2.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebSite","name":"JL1EHQ Official Website","url":"https://jl1ehq.com/","description":"AI × Amateur Radio × Remote Station × DX","author":{"@type":"Person","name":"Toshio Takagi","alternateName":"JL1EHQ"}}
+</script>
+</head>
+<body>
+
+<header class="hdr">
+  <a class="logo display" href="#home">JL1EHQ<small>OFFICIAL WEBSITE</small></a>
+  <div style="display:flex;align-items:center">
+    <nav class="nav" id="nav">
+      <a href="#home">HOME</a>
+      <a href="#about">ABOUT</a>
+      <a href="#cyber">CYBER STATION</a>
+      <a href="#station">STATION</a>
+      <a href="#blog">BLOG</a>
+      <a href="#gallery">GALLERY</a>
+      <a href="#wavelog">WAVELOG</a>
+      <a href="#contact">CONTACT</a>
+    </nav>
+    <button class="lang-btn" id="langBtn">🇺🇸 English</button>
+    <button class="burger" id="burger" aria-label="menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<!-- ================= HERO ================= -->
+<div class="hero" id="home">
+  <canvas id="heroCanvas"></canvas>
+  <div class="inner">
+    <div class="call display">JL1EHQ</div>
+    <div class="sub">
+      <span class="ja">AIと共創するアマチュア無線革命</span>
+      <span class="en en-line">The Future of Amateur Radio<br>Powered by AI</span>
+    </div>
+    <div class="tags">
+      <span>AI</span><span>AMATEUR RADIO</span><span>REMOTE STATION</span><span>DX</span>
+    </div>
+    <div class="cta">
+      <a class="btn btn-primary" href="#cyber"><span class="ja">サイバー局を見る</span><span class="en">Explore Cyber Station</span></a>
+      <a class="btn btn-ghost" href="#about"><span class="ja">JL1EHQについて</span><span class="en">About JL1EHQ</span></a>
+    </div>
+  </div>
+  <div class="scroll-hint display">SCROLL</div>
+</div>
+
+<!-- ================= TWO BASES (representative photos) ================= -->
+<section id="bases" style="padding-top:80px">
+  <div class="sec-label reveal">TWO BASES</div>
+  <h2 class="sec-title reveal"><span class="ja">2つの<span class="accent">拠点</span></span><span class="en">The Two <span class="accent">Bases</span></span></h2>
+  <div class="station-grid">
+    <div class="base-card glass reveal">
+      <div class="base-photo"><img src="images/antenna_mast.jpg" alt="Oiso Base Station"></div>
+      <div class="base-cap">
+        <h3><span class="ja">大磯固定基地局</span><span class="en">Oiso Base Station</span></h3>
+        <div class="en-name">OBS — 200W RF TRANSMISSION BASE ／ KANAGAWA</div>
+        <p><span class="ja">4基のアンテナ群を空に伸ばす、本システム唯一の電波送信基地。</span><span class="en">The system's sole RF transmission base, equipped with four antennas.</span></p>
+      </div>
+    </div>
+    <div class="base-card glass reveal">
+      <div class="base-photo"><img src="images/trs_main.jpg" alt="Tokyo Remote Station"></div>
+      <div class="base-cap">
+        <h3><span class="ja">東京リモート局</span><span class="en">Tokyo Remote Station</span></h3>
+        <div class="en-name">TRS — MAIN OPERATING BASE ／ NIHONBASHI, TOKYO</div>
+        <p><span class="ja">日本橋の高層階から大磯の電波を操る、メイン運営基地。</span><span class="en">The main operating base, commanding Oiso's transmitters from a high floor in Nihonbashi.</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ABOUT ================= -->
+<section id="about">
+  <div class="sec-label reveal">ABOUT</div>
+  <h2 class="sec-title reveal"><span class="ja">運用者<span class="accent">プロフィール</span></span><span class="en">The <span class="accent">Operator</span></span></h2>
+  <div class="about-grid">
+    <div class="photo glass reveal"><img src="images/image_033.jpg" alt="Toshio Takagi JL1EHQ"></div>
+    <div class="reveal">
+      <div class="about-name"><span class="ja">髙木 俊郎</span><span class="en">Toshio Takagi</span></div>
+      <div class="about-call">JL1EHQ ／ JA0DVN (PORTABLE)</div>
+      <div class="about-text">
+        <p><span class="ja">株式会社アルファTKG 代表取締役会長。電気通信大学卒業後、株式会社アマダにて37年、世界中の工場の現場を歩き、海外本部長・専務取締役を歴任。その後、株式会社アルファTKGを創業。<b>「機械・電気・ソフトウェア」</b>を人生の軸として歩み続けている。</span>
+        <span class="en">Founder &amp; Chairman of alfaTKG Co., Ltd. After graduating from the University of Electro-Communications, spent 37 years at AMADA Co., Ltd., walking factory floors around the world as Head of Overseas Operations and Senior Managing Director, before founding alfaTKG. His life has always revolved around <b>machines, electronics, and software</b>.</span></p>
+        <p><span class="ja">その原点は、少年の日のアマチュア無線。長野市で受信機9R-59と送信機TX-88Aを自ら組み上げ、わずか10Wの電波でアメリカ東海岸との交信に成功した。その日の胸の高鳴りが、人生を決定づけた。</span>
+        <span class="en">It all began with amateur radio as a boy in Nagano. He hand-built a Trio 9R-59 receiver and TX-88A transmitter, and with just 10 watts reached the US East Coast. The thrill of that day shaped the rest of his life.</span></p>
+        <p><span class="ja">いま、最新鋭のIC-7760・クラウド・AI（人工知能）を武器に、アマチュア無線の新しい時代を自らの手で切り拓いている。</span>
+        <span class="en">Today, armed with the flagship IC-7760, cloud technology, and AI, he is pioneering a new era of amateur radio with his own hands.</span></p>
+      </div>
+      <ul class="timeline">
+        <li><span class="t">1960s</span><span class="ja">長野市にて開局。第二級アマチュア無線技士取得（JA0DVN）</span><span class="en">First licensed in Nagano (JA0DVN), 2nd-Class Amateur Radio Operator</span></li>
+        <li><span class="t">1970s–2010s</span><span class="ja">アマダで世界を舞台に活躍後、アルファTKGを創業</span><span class="en">Global career at AMADA, then founded alfaTKG</span></li>
+        <li><span class="t">2025</span><span class="ja">IC-7760導入。大磯200W固定局を構築</span><span class="en">Built the 200W Oiso base station with IC-7760</span></li>
+        <li><span class="t">2026</span><span class="ja">遠隔操作×クラウド×AIの「サイバー局」を実現</span><span class="en">Realized the AI-powered remote "Cyber Station"</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CYBER STATION ================= -->
+<section id="cyber">
+  <div class="sec-label reveal">CYBER STATION</div>
+  <h2 class="sec-title reveal"><span class="ja"><span class="accent">考える無線局</span>への進化</span><span class="en">Evolution into a <span class="accent">Thinking Station</span></span></h2>
+  <div class="reveal"><span class="ver-badge">VERSION 4.0 CONCEPT</span></div>
+  <p class="sec-lead reveal">
+    <span class="ja">身体（遠隔運用）と記憶（クラウドログ）の上に、AIエージェント群を実装。情報の整理・分析・提案はAIが担い、最終判断と交信は常に人間が行う――主役は人間であり、AIは人間の可能性を広げる最高のパートナーである。</span>
+    <span class="en">On top of its "body" (remote operation) and "memory" (cloud logging), a team of AI agents is being deployed. AI organizes, analyzes and proposes — but the final decision and every QSO always belong to the human operator. AI is the ultimate partner that expands human potential.</span>
+  </p>
+  <div class="grid c3">
+    <div class="cyber-card glass reveal">
+      <div class="icon">🤖</div>
+      <h3>AI AGENT</h3><div class="jp-name"><span class="ja">AIエージェント群</span><span class="en">Multi-Agent System</span></div>
+      <p><span class="ja">統括AIオペレーターの下、DX探索・伝搬予測・アワード管理・設備見守りなど7つのエージェントが運用者を支援する。</span>
+      <span class="en">Under a Chief Cyber Operator, seven agents assist the operator: DX hunting, propagation forecasting, award tracking, station health monitoring and more.</span></p>
+    </div>
+    <div class="cyber-card glass reveal">
+      <div class="icon">📡</div>
+      <h3>REMOTE OPERATION</h3><div class="jp-name"><span class="ja">遠隔運用</span><span class="en">Zero-Latency Remote</span></div>
+      <p><span class="ja">神奈川・大磯の200W基地局を東京・日本橋からVPNで遠隔操作。CW・SSB・FT8をタイムラグなく運用する。</span>
+      <span class="en">The 200W Oiso base station is operated from Nihonbashi, Tokyo via VPN — CW, SSB and FT8 with no perceptible latency.</span></p>
+    </div>
+    <div class="cyber-card glass reveal">
+      <div class="icon">🎛️</div>
+      <h3>IC-7760</h3><div class="jp-name"><span class="ja">フラッグシップ無線機</span><span class="en">Flagship Transceiver</span></div>
+      <p><span class="ja">ICOM最新鋭HF機。分離型操作部により、本体は大磯・操作部は東京という完全リモート構成を実現。</span>
+      <span class="en">ICOM's flagship HF rig. Its detachable controller enables a fully remote architecture: RF deck in Oiso, control head in Tokyo.</span></p>
+    </div>
+    <div class="cyber-card glass reveal">
+      <div class="icon">🔐</div>
+      <h3>VPN</h3><div class="jp-name"><span class="ja">専用ネットワーク</span><span class="en">Dedicated Network</span></div>
+      <p><span class="ja">ヤマハVPNが両拠点を低遅延・高信頼で直結。管理系はTailscale、ログ系はHTTPSと、用途別に3系統を分離。</span>
+      <span class="en">A Yamaha VPN links both sites with low latency and high reliability; Tailscale for management and HTTPS for logging keep the three planes cleanly separated.</span></p>
+    </div>
+    <div class="cyber-card glass reveal">
+      <div class="icon">☁️</div>
+      <h3>WAVELOG</h3><div class="jp-name"><span class="ja">クラウドログ基盤</span><span class="en">Cloud Logging Core</span></div>
+      <p><span class="ja">独自構築のクラウドサーバー上でWavelogが全QSOを一元管理。LoTW・eQSL・QRZ.comへ直接連携し、HAMLOGも自動同期。</span>
+      <span class="en">Wavelog on a self-built cloud server is the single source of truth for every QSO, feeding LoTW, eQSL and QRZ.com directly, with HAMLOG synced automatically.</span></p>
+    </div>
+    <div class="cyber-card glass reveal">
+      <div class="icon">⚡</div>
+      <h3>AI AUTOMATION</h3><div class="jp-name"><span class="ja">AI自動化</span><span class="en">Autonomous Operations</span></div>
+      <p><span class="ja">FT8の完全自動ログ登録、無人運転を支える自動復帰システム、そしてAIによる24時間の設備監視へ。</span>
+      <span class="en">Fully automatic FT8 logging, an auto-recovery system for unattended operation, and 24/7 AI-driven station monitoring.</span></p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= STATION ================= -->
+<section id="station">
+  <div class="sec-label reveal">STATION</div>
+  <h2 class="sec-title reveal"><span class="ja">2拠点<span class="accent">1局</span>という思想</span><span class="en">Two Sites, <span class="accent">One Station</span></span></h2>
+  <div class="station-grid">
+    <div class="station-card glass reveal">
+      <img src="images/image_007.jpg" alt="Antenna mast at Oiso Base Station" loading="lazy">
+      <h3><span class="ja">大磯固定基地局</span><span class="en">Oiso Base Station</span></h3>
+      <div class="en-name">OBS — RF TRANSMISSION BASE</div>
+      <p><span class="ja">本システム唯一のRF送信基地（200W・神奈川県大磯）。3.5/7MHzフルサイズダイポール、14MHz 2エレ八木、全バンド対応CPATUの4基のアンテナ群。UPSと自動復帰システムにより24時間無人運転。</span>
+      <span class="en">The system's sole RF transmission base (200W, Oiso, Kanagawa). Four antennas — full-size dipoles for 3.5/7 MHz, a 2-element Yagi for 14 MHz, and an all-band CPATU — run unattended 24/7 with UPS backup and auto-recovery.</span></p>
+    </div>
+    <div class="station-card glass reveal">
+      <img src="images/image_015.jpg" alt="IC-7760 remote console at Tokyo Remote Station" loading="lazy">
+      <h3><span class="ja">東京リモート局</span><span class="en">Tokyo Remote Station</span></h3>
+      <div class="en-name">TRS — MAIN OPERATING BASE</div>
+      <p><span class="ja">日本橋の高層階に置くメイン運営基地。IC-7760リモートコンソールから大磯の電波を自在に操る。送信設備を持たない、純粋な「操作の拠点」。</span>
+      <span class="en">The main operating base on a high floor in Nihonbashi. From the IC-7760 remote console, the operator commands Oiso's transmitters at will — a pure "control point" with no RF hardware of its own.</span></p>
+    </div>
+  </div>
+  <div class="diagram-wrap glass reveal">
+    <img src="images/image_002.png" alt="System architecture diagram" loading="lazy">
+  </div>
+  <div class="spec-link reveal">
+    <a class="btn btn-ghost" href="spec.html"><span class="ja">📘 システム仕様書（公開版）を読む</span><span class="en">📘 Read the Full System Specification</span></a>
+  </div>
+</section>
+
+<!-- ================= BLOG ================= -->
+<section id="blog">
+  <div class="sec-label reveal">BLOG</div>
+  <h2 class="sec-title reveal"><span class="ja">局長<span class="accent">ブログ</span></span><span class="en">Operator's <span class="accent">Blog</span></span></h2>
+  <p class="sec-lead reveal"><span class="ja">サイバー局の構築記録、DX運用レポート、AI×無線の実験ノート。</span><span class="en">Build logs of the Cyber Station, DX operation reports, and AI × radio experiment notes.</span></p>
+  <div class="blog-grid" id="blogGrid"></div>
+</section>
+
+<!-- ================= GALLERY ================= -->
+<section id="gallery">
+  <div class="sec-label reveal">GALLERY</div>
+  <h2 class="sec-title reveal"><span class="ja">フォト＆<span class="accent">ムービー</span></span><span class="en">Photos &amp; <span class="accent">Videos</span></span></h2>
+  <div class="gallery-grid reveal">
+    <div class="g-item"><img src="images/antenna_mast.jpg" alt="" loading="lazy"><div class="cap"><span class="ja">アンテナマスト（大磯）</span><span class="en">Antenna mast, Oiso</span></div></div>
+    <div class="g-item"><img src="images/image_007.jpg" alt="" loading="lazy"><div class="cap"><span class="ja">14MHz 2エレ八木</span><span class="en">14 MHz 2-element Yagi</span></div></div>
+    <div class="g-item"><img src="images/image_008.jpg" alt="" loading="lazy"><div class="cap"><span class="ja">フルサイズダイポール給電部</span><span class="en">Full-size dipole feed point</span></div></div>
+    <div class="g-item"><img src="images/image_009.jpg" alt="" loading="lazy"><div class="cap"><span class="ja">バーチカルアンテナ</span><span class="en">Vertical antenna (CPATU)</span></div></div>
+    <div class="g-item"><img src="images/image_004.jpg" alt="" loading="lazy"><div class="cap"><span class="ja">大磯 運用卓</span><span class="en">Operating desk, Oiso</span></div></div>
+    <div class="g-item"><img src="images/image_015.jpg" alt="" loading="lazy"><div class="cap"><span class="ja">IC-7760 リモートコンソール</span><span class="en">IC-7760 remote console</span></div></div>
+    <div class="g-item"><img src="images/image_038.png" alt="" loading="lazy"><div class="cap"><span class="ja">Wavelog ダッシュボード</span><span class="en">Wavelog dashboard</span></div></div>
+    <div class="g-item"><img src="images/image_016.jpg" alt="" loading="lazy"><div class="cap"><span class="ja">東京リモート局からの眺望</span><span class="en">View from Tokyo Remote Station</span></div></div>
+  </div>
+  <div class="video-wrap reveal">
+    <div class="wavelog-box glass" id="videoPlaceholder">
+      <div class="icon">🎬</div>
+      <p style="color:var(--text-dim)"><span class="ja">運用動画・YouTube チャンネルは近日公開</span><span class="en">Operation videos &amp; YouTube channel — coming soon</span></p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= WAVELOG ================= -->
+<section id="wavelog">
+  <div class="sec-label reveal">WAVELOG</div>
+  <div class="wavelog-box glass reveal">
+    <div class="icon">☁️</div>
+    <h2 class="sec-title" style="margin-bottom:8px"><span class="ja">クラウド<span class="accent">ログブック</span></span><span class="en">Cloud <span class="accent">Logbook</span></span></h2>
+    <p class="sec-lead" style="margin:0 auto 30px;max-width:560px"><span class="ja">全QSOはWavelogで一元管理。ログブックの一般公開は準備中です。</span><span class="en">Every QSO is managed in Wavelog. Public access to the logbook is being prepared.</span></p>
+    <a class="btn btn-primary" href="#wavelog" aria-disabled="true" style="opacity:.65;cursor:default">WAVELOG <span class="ja">（準備中）</span><span class="en">(COMING SOON)</span></a>
+  </div>
+</section>
+
+<!-- ================= CONTACT ================= -->
+<section id="contact">
+  <div class="sec-label reveal">CONTACT</div>
+  <h2 class="sec-title reveal"><span class="ja">コンタクト</span><span class="en">Get in Touch</span></h2>
+  <div class="contact-grid">
+    <a class="contact-card glass reveal" href="https://www.qrz.com/db/JL1EHQ" target="_blank" rel="noopener">
+      <div class="icon">📇</div><h3>QRZ.COM</h3>
+      <p><span class="ja">JL1EHQ の局情報ページ</span><span class="en">Callsign page — JL1EHQ</span></p>
+    </a>
+    <a class="contact-card glass reveal" href="https://github.com/tkgtokyo2014-web" target="_blank" rel="noopener">
+      <div class="icon">💻</div><h3>GITHUB</h3>
+      <p><span class="ja">このサイトのソースコード</span><span class="en">Source code of this site</span></p>
+    </a>
+    <a class="contact-card glass reveal" href="#contact" id="emailLink">
+      <div class="icon">✉️</div><h3>EMAIL</h3>
+      <p><span class="ja">メールでのご連絡はこちら</span><span class="en">Send me an email</span></p>
+    </a>
+  </div>
+</section>
+
+<footer>
+  <div class="f-call display">JL1EHQ</div>
+  <div><span class="ja">© 2026 髙木俊郎（JL1EHQ）— Oiso Base Station ／ Tokyo Remote Station</span>
+  <span class="en">© 2026 Toshio Takagi (JL1EHQ) — Oiso Base Station / Tokyo Remote Station</span></div>
+  <div style="margin-top:6px;opacity:.6">AI × Amateur Radio × Remote Station × DX</div>
+</footer>
+
+<!-- article overlay -->
+<div class="article-view" id="articleView">
+  <div class="article-inner glass">
+    <button class="article-close" id="articleClose"><span class="ja">✕ 閉じる</span><span class="en">✕ Close</span></button>
+    <div id="articleBody"></div>
+  </div>
+</div>
+
+<!-- lightbox -->
+<div class="lightbox" id="lightbox">
+  <img id="lbImg" alt="">
+  <div class="lb-cap" id="lbCap"></div>
+</div>
+
+<script src="assets/v2.js"></script>
+</body>
+</html>
