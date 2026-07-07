@@ -44,6 +44,7 @@ html.lang-ja .en { display: none !important; }
   border-bottom: 1px solid rgba(120, 190, 255, 0.12);
 }
 .hdr .logo {
+  font-family: "Audiowide", "Orbitron", sans-serif;
   font-size: 20px; color: #fff; font-weight: 700;
   text-shadow: 0 0 18px rgba(77, 195, 255, .8);
 }
@@ -80,6 +81,7 @@ html.lang-ja .en { display: none !important; }
 }
 .hero > .inner { position: relative; z-index: 2; }
 .hero .call {
+  font-family: "Audiowide", "Orbitron", sans-serif;
   font-size: clamp(56px, 11vw, 128px); font-weight: 800; color: #fff;
   text-shadow: 0 0 14px rgba(77,195,255,.9), 0 0 60px rgba(47,124,255,.55), 0 0 120px rgba(47,124,255,.35);
   animation: pulse-glow 4.5s ease-in-out infinite;
