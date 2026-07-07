@@ -89,9 +89,9 @@ html.lang-ja .en { display: none !important; }
   50%      { text-shadow: 0 0 22px rgba(111,227,255,1), 0 0 90px rgba(47,124,255,.8), 0 0 160px rgba(47,124,255,.5); }
 }
 .hero .op-name {
-  margin-top: 6px; font-size: clamp(15px, 2.4vw, 22px);
-  color: #cfe6ff; letter-spacing: .14em; font-weight: 500;
-  text-shadow: 0 0 10px rgba(77,195,255,.45);
+  margin-top: 10px; font-size: clamp(22px, 4.2vw, 40px);
+  color: #fff; letter-spacing: .14em; font-weight: 700;
+  text-shadow: 0 0 12px rgba(77,195,255,.9), 0 0 40px rgba(47,124,255,.55);
 }
 .hero .sub {
   margin-top: 14px; font-size: clamp(16px, 3vw, 26px);
