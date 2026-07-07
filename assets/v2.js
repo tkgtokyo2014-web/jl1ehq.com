@@ -175,7 +175,8 @@
   const articleView = document.getElementById("articleView");
   const articleBody = document.getElementById("articleBody");
   const openPost = async (post, lang) => {
-    const res = await fetch("blog/" + post.file);
+    const file = (lang === "ja" ? post.file_ja : post.file_en) || post.file;
+    const res = await fetch("blog/" + file);
     const md = await res.text();
     articleBody.innerHTML =
       `<h1>${lang === "ja" ? post.title_ja : post.title_en}</h1>` +
