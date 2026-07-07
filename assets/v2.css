@@ -116,6 +116,7 @@ html.lang-ja .en { display: none !important; }
   font-family: "Noto Sans JP", sans-serif; letter-spacing: .04em;
 }
 .btn-plain:hover { background: #e8eef7; transform: translateY(-2px); }
+.btn-plain.big { font-size: clamp(17px, 2.4vw, 22px); padding: 20px 56px; }
 .btn-ghost { color: var(--cyan); border: 1px solid var(--glass-border); background: var(--glass); backdrop-filter: blur(8px); }
 .btn-ghost:hover { border-color: var(--glow); box-shadow: 0 0 22px rgba(77,195,255,.35); transform: translateY(-2px); }
 .scroll-hint {
