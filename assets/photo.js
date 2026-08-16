@@ -86,7 +86,25 @@
     ]
   };
 
-  const COLLECTIONS = [ORONKO, AURORA];
+  const TABI = {
+    dir: "images/photobook/",
+    photos: [
+      { id: "tabi-01", ja: "女満別ゆき", en: "The flight to Memanbetsu",
+        ja_d: "搭乗前、窓越しに見たプロペラ機。旅はいつも、この音から始まる。", en_d: "The turboprop seen through the glass before boarding. The trip always begins with that sound." },
+      { id: "tabi-02", ja: "原生花園駅", en: "Genseikaen Station",
+        ja_d: "ホームというより、線路のわきの小屋。レールはまっすぐ、次の駅へ伸びていく。", en_d: "Less a platform than a hut beside the track. The rails run straight on toward the next stop." },
+      { id: "tabi-03", ja: "丸太の駅舎", en: "The log-cabin depot",
+        ja_d: "三角屋根の丸太小屋に「原生花園駅」の看板。季節のあいだだけ列車が停まる臨時駅。", en_d: "A log cabin under green gables, marked Genseikaen — a seasonal halt where trains stop only part of the year." },
+      { id: "tabi-04", ja: "小清水原生花園", en: "Koshimizu Genseikaen",
+        ja_d: "天覧ヶ丘展望台への道しるべ。海と湖にはさまれた砂丘に、野の花の原がひろがる。", en_d: "The signpost for the Tenrangaoka lookout. Beyond it, a dune of wildflowers held between the sea and the lagoon." },
+      { id: "tabi-05", ja: "エゾシカの子", en: "A young sika deer",
+        ja_d: "道ばたの草むらで、白い花に顔をうずめていた。こちらを気にする様子もない。", en_d: "Nose down among the white flowers at the roadside, entirely unbothered by us." },
+      { id: "tabi-06", ja: "雲の上のプロペラ", en: "Propeller above the clouds",
+        ja_d: "帰りの便。回りつづける羽根の向こうに日が沈んでいく。", en_d: "The flight home — the sun going down behind a blade that never stops turning." }
+    ]
+  };
+
+  const COLLECTIONS = [ORONKO, AURORA, TABI];
 
   /* flatten for the lightbox */
   const ALL = [];
