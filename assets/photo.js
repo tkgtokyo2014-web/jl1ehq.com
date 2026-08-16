@@ -89,7 +89,7 @@
   const TABI = {
     dir: "images/photobook/",
     photos: [
-      { id: "tabi-01", ja: "女満別ゆき", en: "The flight to Memanbetsu",
+      { id: "tabi-01", ja: "中標津より", en: "From Nakashibetsu",
         ja_d: "搭乗前、窓越しに見たプロペラ機。旅はいつも、この音から始まる。", en_d: "The turboprop seen through the glass before boarding. The trip always begins with that sound." },
       { id: "tabi-02", ja: "原生花園駅", en: "Genseikaen Station",
         ja_d: "ホームというより、線路のわきの小屋。レールはまっすぐ、次の駅へ伸びていく。", en_d: "Less a platform than a hut beside the track. The rails run straight on toward the next stop." },
