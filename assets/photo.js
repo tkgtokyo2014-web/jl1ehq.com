@@ -99,7 +99,7 @@
         ja_d: "天覧ヶ丘展望台への道しるべ。海と湖にはさまれた砂丘に、野の花の原がひろがる。", en_d: "The signpost for the Tenrangaoka lookout. Beyond it, a dune of wildflowers held between the sea and the lagoon." },
       { id: "tabi-05", ja: "エゾシカの子", en: "A young sika deer",
         ja_d: "道ばたの草むらで、白い花に顔をうずめていた。こちらを気にする様子もない。", en_d: "Nose down among the white flowers at the roadside, entirely unbothered by us." },
-      { id: "tabi-06", ja: "雲の上のプロペラ", en: "Propeller above the clouds",
+      { id: "tabi-06", ja: "中標津上空ー羽田行き", en: "Over Nakashibetsu, bound for Haneda",
         ja_d: "帰りの便。回りつづける羽根の向こうに日が沈んでいく。", en_d: "The flight home — the sun going down behind a blade that never stops turning." }
     ]
   };
