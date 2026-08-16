@@ -66,7 +66,27 @@
         ja_d: "曇天の海へ、岩がまっすぐ突き出している。", en_d: "The rock pushing straight out into a grey, quiet sea." }
     ]
   };
-  const COLLECTIONS = [ORONKO];
+  const AURORA = {
+    dir: "images/photobook/",
+    photos: [
+      { id: "aurora-01", ja: "出航", en: "Casting off",
+        ja_d: "ウトロ港を離れると、船首の向こうに知床の断崖が現れる。雲は稜線に載ったまま動かない。", en_d: "Clear of Utoro harbour, the cliffs of Shiretoko rise beyond the bow. The cloud sits on the ridge and will not move." },
+      { id: "aurora-02", ja: "ウ", en: "Cormorant",
+        ja_d: "銀色に波打つ海面から、白い喉だけが浮かび上がる。", en_d: "Only the white throat surfacing from a sea of rippling silver." },
+      { id: "aurora-03", ja: "カモメの若鳥", en: "Young gull",
+        ja_d: "波の上すれすれを、翼を伸ばして滑っていく。", en_d: "Skimming the swell, wings held out straight." },
+      { id: "aurora-04", ja: "オジロワシ 二羽", en: "Two white-tailed eagles",
+        ja_d: "上下に重なって、同じ方向へ。海面が背景になった一瞬。", en_d: "Stacked one above the other, flying the same line — the sea itself as backdrop." },
+      { id: "aurora-05", ja: "オジロワシ", en: "White-tailed eagle",
+        ja_d: "翼をいっぱいに広げ、鳴きながら旋回する。", en_d: "Wings at full span, calling as it turns." },
+      { id: "aurora-06", ja: "オジロワシ", en: "White-tailed eagle",
+        ja_d: "白い尾と黄色い嘴。北の海の主。", en_d: "White wedge of a tail, yellow bill — the master of the northern sea." },
+      { id: "aurora-07", ja: "岩の岬", en: "The rocky cape",
+        ja_d: "草の向こうに、網をかけられた岩の岬。その先はもうオホーツクしかない。", en_d: "Beyond the grass, a netted spur of rock — and past it, nothing but the Okhotsk." }
+    ]
+  };
+
+  const COLLECTIONS = [ORONKO, AURORA];
 
   /* flatten for the lightbox */
   const ALL = [];
